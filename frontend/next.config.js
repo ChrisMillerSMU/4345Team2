@@ -1,21 +1,28 @@
-const withPWA = require('next-pwa');
-const runtimeCaching = require('next-pwa/cache');
-const withFonts = require('next-fonts');
-
-(module.exports = withPWA({
+const nextConfig = {
   reactStrictMode: true,
-  images: {
-    domains: ['lh3.googleusercontent.com', 'firebasestorage.googleapis.com'],
-  },
-  pwa: {
-    dest: 'public',
-    runtimeCaching,
-    disable: !process.env.ENABLE_PWA && process.env.NODE_ENV === 'development',
-  },
-})),
-  withFonts({
-    enableSvg: true,
-    webpack(config, options) {
-      return config;
-    },
-  });
+  swcMinify: true,
+}
+
+module.exports = nextConfig
+
+// const withPWA = require('next-pwa');
+// const runtimeCaching = require('next-pwa/cache');
+// const withFonts = require('next-fonts');
+
+// (module.exports = withPWA({
+//   reactStrictMode: true,
+//   images: {
+//     domains: ['lh3.googleusercontent.com', 'firebasestorage.googleapis.com'],
+//   },
+//   pwa: {
+//     dest: 'public',
+//     runtimeCaching,
+//     disable: !process.env.ENABLE_PWA && process.env.NODE_ENV === 'development',
+//   },
+// })),
+//   withFonts({
+//     enableSvg: true,
+//     webpack(config, options) {
+//       return config;
+//     },
+//   });
