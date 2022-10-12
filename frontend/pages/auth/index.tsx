@@ -219,13 +219,13 @@ export default function AuthPage() {
 
       {/* Small Screen */}
       <section className="flex md:hidden min-h-screen h-screen justify-center bg-white">
-        <div className="flex flex-col items-center justify-center w-5/6 h-4/5 bg-blue-200 my-8 p-6">
+        <div className="flex flex-col items-center justify-center w-5/6 h-4/5 bg-white my-8 p-6">
           {!passwordResetDialog ? (
             <>
               {/* Main Login Screen */}
-              <h1 className="text-2xl font-black text-center">HackPortal 1.0</h1> {/* !change */}
-              <p className="text-sm text-center">
-                Log in to continue or create an account to register
+              <h1 className="text-2xl text-black text-center">TA Management System</h1> {/* !change */}
+              <p className="text-sm text-black text-center">
+                Log In or Create an Account
               </p>
               {/* <button
                 className="px-4 py-2 rounded-md shadow-md bg-white my-4 font-bold hover:shadow-lg hover:bg-gray-100"
@@ -233,12 +233,12 @@ export default function AuthPage() {
               >
                 Sign in with Google
               </button> */}
-              <div className="text-sm">or</div>
+              {/*<div className="text-sm">or</div>*/}
               {/* Account credential input fields */}
               <div className="w-5/6">
                 <form onSubmit={handleSubmit}>
                   <input
-                    className="w-full rounded-lg p-2 border-[1px] border-gray-500"
+                    className="w-full rounded-lg p-2 border-[1px] border-gray-500 text-black"
                     value={currentEmail}
                     onChange={(e) => setCurrentEmail(e.target.value)}
                     style={{ backgroundColor: '#FFF' }}
@@ -249,7 +249,7 @@ export default function AuthPage() {
                   ></input>
                   <input
                     id="passwordInputSm"
-                    className="passwordInput w-full rounded-lg p-2 my-2 border-[1px] border-gray-500"
+                    className="passwordInput w-full rounded-lg p-2 my-2 border-[1px] border-gray-500 text-black"
                     value={currentPassword}
                     onChange={(e) => setCurrentPassword(e.target.value)}
                     style={{ backgroundColor: '#FFF' }}
@@ -270,13 +270,13 @@ export default function AuthPage() {
                 Show Password
               </div> */}
               <button
-                className="px-4 py-2 rounded-md shadow-md bg-white w-5/6 hover:shadow-lg hover:bg-gray-100"
+                className="px-4 py-2 rounded-md text-black shadow-md bg-white w-5/6 hover:shadow-lg hover:bg-gray-100"
                 onClick={() => signIn()}
               >
                 Sign in
               </button>
               {/* Error and verification messages */}
-              <div className="text-sm">{errorMsg}</div>
+              <div className="text-sm text-black">{errorMsg}</div>
               {/* {sendVerification && (
                 <button className="underline text-sm" onClick={() => sendVerificationEmail()}>
                   Resend verification
@@ -285,7 +285,7 @@ export default function AuthPage() {
               {/* Account options */}
               <div className="text-sm w-5/6 my-4">
                 <div
-                  className="cursor-pointer hover:underline"
+                  className="cursor-pointer hover:underline text-black"
                   onClick={() => {
                     setPasswordResetDialog(true);
                     setErrorMsg('');
@@ -295,14 +295,14 @@ export default function AuthPage() {
                   Forgot Password?
                 </div>
                 <Link href="/auth/signup">
-                  <a className="w-full hover:underline">Create an account</a>
+                  <a className="w-full hover:underline text-black">Create an account</a>
                 </Link>
               </div>
             </>
           ) : (
             //Password reset section
             <div>
-              <div className="w-full text-left my-4">
+              <div className="w-full text-left my-4 text-black">
                 <ArrowBackIcon
                   className="cursor-pointer"
                   onClick={() => {
@@ -311,10 +311,10 @@ export default function AuthPage() {
                   }}
                 />
               </div>
-              <h1 className="text-3xl font-black">Reset Password</h1>
+              <h1 className="text-3xl text-black">Reset Password</h1>
               <div className="w-full">
                 <input
-                  className="w-full rounded-lg p-2 border-[1px] border-gray-500 my-4"
+                  className="w-full rounded-lg p-2 border-[1px] border-gray-500 my-4 text-black"
                   value={currentEmail}
                   onChange={(e) => setCurrentEmail(e.target.value)}
                   style={{ backgroundColor: '#FFF' }}
@@ -329,7 +329,7 @@ export default function AuthPage() {
                 >
                   Send Reset Email
                 </button> */}
-                <div className="text-left">{errorMsg}</div>
+                <div className="text-left text-black">{errorMsg}</div>
               </div>
             </div>
           )}
