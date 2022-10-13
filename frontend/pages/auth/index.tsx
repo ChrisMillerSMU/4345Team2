@@ -218,13 +218,13 @@ export default function AuthPage() {
       </section>
 
       {/* Small Screen */}
-      <section className="flex md:hidden min-h-screen h-screen justify-center bg-white">
-        <div className="flex flex-col items-center justify-center w-5/6 h-4/5 bg-white my-8 p-6">
+      <section className="flex md:hidden min-h-screen h-screen justify-center bg-black-200">
+        <div className="flex flex-col items-center justify-center w-5/6 h-4/5 bg-black-200 my-8 p-6">
           {!passwordResetDialog ? (
             <>
               {/* Main Login Screen */}
-              <h1 className="text-2xl text-black text-center">TA Management System</h1> {/* !change */}
-              <p className="text-sm text-black text-center">
+              <h1 className="text-2xl text-white text-center">TA Management System</h1> {/* !change */}
+              <p className="text-sm text-white text-center">
                 Log In or Create an Account
               </p>
               {/* <button
@@ -270,13 +270,13 @@ export default function AuthPage() {
                 Show Password
               </div> */}
               <button
-                className="px-4 py-2 rounded-md text-black shadow-md bg-white w-5/6 hover:shadow-lg hover:bg-gray-100"
+                className="px-4 py-2 rounded-md text-black shadow-md bg-white w-5/6 hover:shadow-lg hover:bg-gray-300"
                 onClick={() => signIn()}
               >
                 Sign in
               </button>
               {/* Error and verification messages */}
-              <div className="text-sm text-black">{errorMsg}</div>
+              <div className="text-sm text-white">{errorMsg}</div>
               {/* {sendVerification && (
                 <button className="underline text-sm" onClick={() => sendVerificationEmail()}>
                   Resend verification
@@ -285,7 +285,7 @@ export default function AuthPage() {
               {/* Account options */}
               <div className="text-sm w-5/6 my-4">
                 <div
-                  className="cursor-pointer hover:underline text-black"
+                  className="cursor-pointer hover:underline text-white"
                   onClick={() => {
                     setPasswordResetDialog(true);
                     setErrorMsg('');
@@ -294,15 +294,24 @@ export default function AuthPage() {
                 >
                   Forgot Password?
                 </div>
-                <Link href="/auth/signup">
-                  <a className="w-full hover:underline text-black">Create an account</a>
-                </Link>
+                {/* Create new account sidebar*/}
+        <div className="flex flex-col justify-center items-center bg-black-200 text-center p-4">
+          <h1 className="text-3xl font-black">Don&#39;t have an account?</h1>
+          <p className="my-6">
+            You can register here!
+          </p>
+          <Link href="/auth/signup">
+            <a className="px-4 py-2 rounded-xl shadow-md bg-white text-black hover:shadow-lg hover:bg-blue-300">
+              Register
+            </a>
+          </Link>
+        </div>
               </div>
             </>
           ) : (
             //Password reset section
             <div>
-              <div className="w-full text-left my-4 text-black">
+              <div className="w-full text-left my-4 text-white">
                 <ArrowBackIcon
                   className="cursor-pointer"
                   onClick={() => {
@@ -311,7 +320,7 @@ export default function AuthPage() {
                   }}
                 />
               </div>
-              <h1 className="text-3xl text-black">Reset Password</h1>
+              <h1 className="text-3xl text-white">Reset Password</h1>
               <div className="w-full">
                 <input
                   className="w-full rounded-lg p-2 border-[1px] border-gray-500 my-4 text-black"
@@ -329,7 +338,7 @@ export default function AuthPage() {
                 >
                   Send Reset Email
                 </button> */}
-                <div className="text-left text-black">{errorMsg}</div>
+                <div className="text-left text-white">{errorMsg}</div>
               </div>
             </div>
           )}
