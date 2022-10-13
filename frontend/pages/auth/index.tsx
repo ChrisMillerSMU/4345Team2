@@ -223,9 +223,9 @@ export default function AuthPage() {
           {!passwordResetDialog ? (
             <>
               {/* Main Login Screen */}
-              <h1 className="text-2xl text-white text-center">TA Management System</h1> {/* !change */}
-              <p className="text-sm text-white text-center">
-                Log In or Create an Account
+              <h1 className="text-3xl text-white font-black text-center">TA Management System</h1> {/* !change */}
+              <p className="text-xl text-white text-center p-2">
+                Login
               </p>
               {/* <button
                 className="px-4 py-2 rounded-md shadow-md bg-white my-4 font-bold hover:shadow-lg hover:bg-gray-100"
@@ -270,10 +270,10 @@ export default function AuthPage() {
                 Show Password
               </div> */}
               <button
-                className="px-4 py-2 rounded-md text-black shadow-md bg-white w-5/6 hover:shadow-lg hover:bg-gray-300"
+                className="px-4 py-2 rounded-md text-black text-lg shadow-md bg-white w-5/6 hover:shadow-lg hover:bg-blue-300"
                 onClick={() => signIn()}
               >
-                Sign in
+              Sign in
               </button>
               {/* Error and verification messages */}
               <div className="text-sm text-white">{errorMsg}</div>
@@ -294,18 +294,18 @@ export default function AuthPage() {
                 >
                   Forgot Password?
                 </div>
-                {/* Create new account sidebar*/}
-        <div className="flex flex-col justify-center items-center bg-black-200 text-center p-4">
-          <h1 className="text-3xl font-black">Don&#39;t have an account?</h1>
-          <p className="my-6">
-            You can register here!
-          </p>
-          <Link href="/auth/signup">
-            <a className="px-4 py-2 rounded-xl shadow-md bg-white text-black hover:shadow-lg hover:bg-blue-300">
-              Register
-            </a>
-          </Link>
-        </div>
+                {/* Create new account bottom*/}
+                <div className="flex flex-col justify-center items-center bg-black-200 text-center p-4">
+                  <h1 className="text-3xl font-black text-white">Don&#39;t have an account?</h1>
+                  <p className="my-6 text-xl">
+                    You can register here!
+                  </p>
+                  <Link href="/auth/signup">
+                    <a className="px-4 py-2 rounded-xl shadow-md bg-white text-lg text-black hover:shadow-lg hover:bg-blue-300">
+                      Register
+                    </a>
+                  </Link>
+                </div>
               </div>
             </>
           ) : (
