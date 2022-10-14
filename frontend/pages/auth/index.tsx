@@ -94,14 +94,14 @@ export default function AuthPage() {
         <div className="flex flex-col justify-center items-center h-full w-2/3 text-center bg-white p-4">
           {!passwordResetDialog ? (
             <div>
-              <h1 className="text-3xl font-black">Login to your account</h1>
+              <h1 className="dark text-3xl">Login to your account</h1>
               {/* <button
                 className="px-4 py-2 rounded-md shadow-md bg-white my-4 text-lg font-bold hover:shadow-lg hover:bg-gray-100"
                 onClick={() => signInWithGoogle()}
               >
                 Sign in with Google
               </button> */}
-              <div className="text-sm">or</div>
+              <div className="dark text-sm">or</div>
               {/* Account credential input fields */}
               <div className="w-[24rem]">
                 <form onSubmit={handleSubmit}>
@@ -128,7 +128,7 @@ export default function AuthPage() {
                   ></input>
                   <div className="flex justify-between">
                     <div
-                      className="hover:underline cursor-pointer text-left"
+                      className="dark hover:underline cursor-pointer text-left"
                       onClick={() => {
                         setPasswordResetDialog(true);
                         setErrorMsg('');
@@ -145,7 +145,7 @@ export default function AuthPage() {
                       />
                       Show Password
                     </div> */}
-                    <input className="hidden" type="submit" value="Submit" />
+                    <input className="dark" type="submit" value="Submit" />
                   </div>
                   {/* <button
                     type="button"
@@ -180,7 +180,7 @@ export default function AuthPage() {
                   }}
                 />
               </div>
-              <h1 className="text-3xl font-black">Reset Password</h1>
+              <h1 className="dark text-3xl">Reset Password</h1>
               <div className="w-[24rem]">
                 <input
                   className="w-full rounded-lg p-2 border-[1px] border-gray-500 mt-8 mb-4"
