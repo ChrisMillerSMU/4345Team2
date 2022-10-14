@@ -28,3 +28,8 @@ a {
     background: black;
   }
 }
+
+.dark {
+  color: black;
+  background: white;
+}
