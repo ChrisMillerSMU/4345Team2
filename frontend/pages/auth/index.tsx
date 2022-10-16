@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 // import firebase from 'firebase/app';
 import Link from 'next/link';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import { Repository } from '../api/repository.js';
 
 /**
  * A page that allows the user to sign in.
@@ -11,6 +12,7 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
  * Route: /auth
  */
 export default function AuthPage() {
+  var repository = new Repository();
   // const { isSignedIn, signInWithGoogle, updateUser } = useAuthContext();
   const [currentEmail, setCurrentEmail] = useState('');
   const [currentPassword, setCurrentPassword] = useState('');
@@ -21,6 +23,10 @@ export default function AuthPage() {
   const router = useRouter();
   const signIn = () => {
     console.log("Sign In Verification")
+    repository.getLogin(currentEmail, currentPassword).then(x => console.log(x));
+      // alert("Form Submitted");
+      setCurrentEmail("");
+      setCurrentPassword("");
   //   setSendVerification(false);
   //   firebase
   //     .auth()
@@ -94,19 +100,18 @@ export default function AuthPage() {
         <div className="flex flex-col justify-center items-center h-full w-2/3 text-center bg-white p-4">
           {!passwordResetDialog ? (
             <div>
-              <h1 className="dark text-3xl">Login to your account</h1>
+              <h1 className="dark text-3xl p-4">Login to your account</h1>
               {/* <button
                 className="px-4 py-2 rounded-md shadow-md bg-white my-4 text-lg font-bold hover:shadow-lg hover:bg-gray-100"
                 onClick={() => signInWithGoogle()}
               >
                 Sign in with Google
               </button> */}
-              <div className="dark text-sm">or</div>
               {/* Account credential input fields */}
               <div className="w-[24rem]">
                 <form onSubmit={handleSubmit}>
                   <input
-                    className="w-full rounded-lg p-2 border-[1px] border-gray-500"
+                    className="w-full rounded-lg p-2 border-[1px] border-gray-500 text-black"
                     value={currentEmail}
                     onChange={(e) => setCurrentEmail(e.target.value)}
                     style={{ backgroundColor: '#FFF' }}
@@ -117,7 +122,7 @@ export default function AuthPage() {
                   ></input>
                   <input
                     id="passwordInputLg"
-                    className="w-full rounded-lg p-2 my-2 border-[1px] border-gray-500"
+                    className="w-full rounded-lg p-2 my-2 border-[1px] border-gray-500 text-black"
                     value={currentPassword}
                     onChange={(e) => setCurrentPassword(e.target.value)}
                     style={{ backgroundColor: '#FFF' }}
