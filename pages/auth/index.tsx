@@ -46,7 +46,11 @@ export default function AuthPage() {
     getUser();
 
     // redirect to homepage
-    Router.push("/home");
+    if (currentEmail == '' || currentPassword == '') {
+      alert('Please enter an email and password');
+    } else {
+      Router.push("/home");
+    }
 
     // const getNotes = () => {
     //   getDocs(dbInstance)
