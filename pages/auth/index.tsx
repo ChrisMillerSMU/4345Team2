@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import { app, database } from '../../firebase-client';
-import { collection, addDoc } from 'firebase/firestore';
+import { collection, addDoc, doc, getDoc, getDocs } from 'firebase/firestore';
 import { useState, useEffect } from 'react';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import Link from 'next/link';
@@ -22,11 +22,48 @@ export default function AuthPage() {
   const router = useRouter();
   const signIn = () => {
     console.log("Sign In Verification")
-    addDoc(dbInstance, {
-      email: currentEmail,
-      password: currentPassword,
-      username: "RandomSomething"
-    });
+
+    const addUser = async () => {
+      await addDoc(dbInstance, {
+        email: currentEmail,
+        password: currentPassword,
+        username: "RandomSomething"
+      });
+    }
+
+    const getUser = async () => {
+      if (currentEmail) {
+        const user = doc(database, 'users', currentEmail);
+        const data = await getDoc(user);
+        console.log("HERE");
+        console.log(data);
+        console.log({ ...data.data() });
+        return ({ ...data.data() });
+      }
+    }
+
+    addUser();
+    getUser();
+
+    // const getNotes = () => {
+    //   getDocs(dbInstance)
+    //     .then((data) => {
+    //       setSingleNote(data.docs.map((item) => {
+    //         return { ...item.data(), id: item.id }
+    //       })[0]);
+    //     })
+    // }
+
+    // const getData = () => {
+    //   getDocs(dbInstance)
+    //     .then((data) => {
+    //       console.log(data);
+    //     })
+    //   }
+    // useEffect(() => {
+    //   getData();
+    // }, [])
+
     // setSendVerification(false);
     // firebase
     //   .auth()
