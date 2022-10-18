@@ -100,7 +100,7 @@ export default function AuthPage() {
         <div className="flex flex-col justify-center items-center h-full w-2/3 text-center bg-white p-4">
           {!passwordResetDialog ? (
             <div>
-              <h1 className="dark text-3xl">Login to your account</h1>
+              <h1 className="dark text-3xl p-4">Login to your account</h1>
               {/* <button
                 className="px-4 py-2 rounded-md shadow-md bg-white my-4 text-lg font-bold hover:shadow-lg hover:bg-gray-100"
                 onClick={() => signInWithGoogle()}
