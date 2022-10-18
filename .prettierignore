@@ -1,5 +1,4 @@
 .cache
-.husky
 .next
 .vscode
 package.json

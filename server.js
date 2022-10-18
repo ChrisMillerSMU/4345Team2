@@ -9,7 +9,6 @@ app.prepare().then(() => {
   server.get('/service-worker.js', (req, res) => {
     app.serveStatic(req, res, './.next/service-worker.js');
   });
-  //scoping the service workers
   const serviceWorkers = [
     {
       filename: 'service-worker.js',
