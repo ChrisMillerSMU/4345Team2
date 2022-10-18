@@ -14,10 +14,10 @@ app.prepare().then(() => {
       filename: 'service-worker.js',
       path: './.next/service-worker.js',
     },
-    {
-      filename: 'firebase-messaging-sw.js',
-      path: './public/firebase-messaging-sw.js',
-    },
+    // {
+    //   filename: 'firebase-messaging-sw.js',
+    //   path: './public/firebase-messaging-sw.js',
+    // },
   ];
   serviceWorkers.forEach(({ filename, path }) => {
     server.get(`/${filename}`, (req, res) => {

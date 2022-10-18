@@ -1,9 +1,9 @@
 import { useRouter } from 'next/router';
-// import { useAuthContext } from '../../lib/user/AuthContext';
+import { app, database } from '../../firebase-client';
+import { collection, addDoc } from 'firebase/firestore';
 import { useState, useEffect } from 'react';
-// import firebase from 'firebase/app';
-import Link from 'next/link';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import Link from 'next/link';
 
 /**
  * A page that allows the user to sign in.
@@ -17,27 +17,33 @@ export default function AuthPage() {
   const [errorMsg, setErrorMsg] = useState('');
   const [passwordResetDialog, setPasswordResetDialog] = useState(false);
   const [sendVerification, setSendVerification] = useState(false);
+  const dbInstance = collection(database, 'users');
 
   const router = useRouter();
   const signIn = () => {
     console.log("Sign In Verification")
-  //   setSendVerification(false);
-  //   firebase
-  //     .auth()
-  //     .signInWithEmailAndPassword(currentEmail, currentPassword)
-  //     .then(async ({ user }) => {
-  //       // Signed in
-  //       if (!user.emailVerified) {
-  //         setSendVerification(true);
-  //         throw new Error('Email is not verified. Verify your email before logging in.');
-  //       }
-  //       await updateUser(user);
-  //     })
-  //     .catch((error) => {
-  //       const errorCode = error.code;
-  //       const errorMessage = error.message;
-  //       setErrorMsg(errorMessage);
-  //     });
+    addDoc(dbInstance, {
+      email: currentEmail,
+      password: currentPassword,
+      username: "RandomSomething"
+    });
+    // setSendVerification(false);
+    // firebase
+    //   .auth()
+    //   .signInWithEmailAndPassword(currentEmail, currentPassword)
+    //   .then(async ({ user }) => {
+    //     // Signed in
+    //     if (!user.emailVerified) {
+    //       setSendVerification(true);
+    //       throw new Error('Email is not verified. Verify your email before logging in.');
+    //     }
+    //     await updateUser(user);
+    //   })
+    //   .catch((error) => {
+    //     const errorCode = error.code;
+    //     const errorMessage = error.message;
+    //     setErrorMsg(errorMessage);
+    //   });
   };
 
   // const sendResetEmail = () => {
@@ -147,15 +153,15 @@ export default function AuthPage() {
                     </div> */}
                     <input className="dark" type="submit" value="Submit" />
                   </div>
-                  {/* <button
+                  <button
                     type="button"
-                    className="px-4 py-2 w-[24rem] rounded-md shadow-md bg-green-200 hover:shadow-lg hover:bg-green-300"
+                    className="px-4 py-2 w-[24rem] rounded-md shadow-md bg-black hover:shadow-lg hover:bg-gray-300"
                     onClick={() => {
                       signIn();
                     }}
                   >
                     Sign in
-                  </button> */}
+                  </button>
                 </form>
               </div>
               {/* Error and verification messages */}
