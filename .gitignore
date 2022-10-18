@@ -33,4 +33,5 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
-firebase-client.ts
+public/sw.*
+publix/workbox-*
