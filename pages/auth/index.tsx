@@ -1,6 +1,6 @@
-import Router, { useRouter } from 'next/router';
-import { app, database } from '../../firebase-client';
-import { collection, addDoc, doc, getDoc, getDocs } from 'firebase/firestore';
+import { useRouter } from 'next/router';
+import { app, db } from '../../firebase-client';
+import { collection, doc, setDoc, getDoc } from 'firebase/firestore';
 import { useState, useEffect } from 'react';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import Link from 'next/link';
@@ -10,6 +10,7 @@ import Link from 'next/link';
  *
  * Route: /auth
  */
+
 export default function AuthPage() {
   // const { isSignedIn, signInWithGoogle, updateUser } = useAuthContext();
   const [currentEmail, setCurrentEmail] = useState('');
@@ -17,59 +18,32 @@ export default function AuthPage() {
   const [errorMsg, setErrorMsg] = useState('');
   const [passwordResetDialog, setPasswordResetDialog] = useState(false);
   const [sendVerification, setSendVerification] = useState(false);
-  const dbInstance = collection(database, 'users');
+  const dbInstance = collection(db, "users");
 
   const router = useRouter();
   const signIn = () => {
-    console.log("Sign In Verification")
+    console.log("Sign In Verification!")
 
     const addUser = async () => {
-      await addDoc(dbInstance, {
-        email: currentEmail,
-        password: currentPassword,
-        username: "RandomSomething"
+      await setDoc(doc(db, "users", currentEmail), {
+        password: currentPassword
       });
     }
 
     const getUser = async () => {
-      if (currentEmail) {
-        const user = doc(database, 'users', currentEmail);
-        const data = await getDoc(user);
-        console.log("HERE");
-        console.log(data);
-        console.log({ ...data.data() });
-        return ({ ...data.data() });
+      if (currentEmail == '' || currentPassword == '') {
+        return alert("Please Enter An Email And Password.");
+      } const user = await getDoc(doc(db, "users", currentEmail));
+      if (user.exists()) {
+        console.log(user.data());
+        router.push("/home");
+      } else {
+        console.log("Document does not exist!")
+        return alert("User Does Not Exist! Please Register First.");
       }
     }
 
-    addUser();
     getUser();
-
-    // redirect to homepage
-    if (currentEmail == '' || currentPassword == '') {
-      alert('Please enter an email and password');
-    } else {
-      Router.push("/home");
-    }
-
-    // const getNotes = () => {
-    //   getDocs(dbInstance)
-    //     .then((data) => {
-    //       setSingleNote(data.docs.map((item) => {
-    //         return { ...item.data(), id: item.id }
-    //       })[0]);
-    //     })
-    // }
-
-    // const getData = () => {
-    //   getDocs(dbInstance)
-    //     .then((data) => {
-    //       console.log(data);
-    //     })
-    //   }
-    // useEffect(() => {
-    //   getData();
-    // }, [])
 
     // setSendVerification(false);
     // firebase
@@ -88,6 +62,7 @@ export default function AuthPage() {
     //     const errorMessage = error.message;
     //     setErrorMsg(errorMessage);
     //   });
+
   };
 
   // const sendResetEmail = () => {
