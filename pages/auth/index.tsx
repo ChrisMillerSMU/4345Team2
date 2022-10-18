@@ -107,12 +107,11 @@ export default function AuthPage() {
               >
                 Sign in with Google
               </button> */}
-              <div className="dark text-sm">or</div>
               {/* Account credential input fields */}
               <div className="w-[24rem]">
                 <form onSubmit={handleSubmit}>
                   <input
-                    className="w-full rounded-lg p-2 border-[1px] border-gray-500"
+                    className="w-full text-black rounded-lg p-2 border-[1px] border-gray-500"
                     value={currentEmail}
                     onChange={(e) => setCurrentEmail(e.target.value)}
                     style={{ backgroundColor: '#FFF' }}
@@ -123,7 +122,7 @@ export default function AuthPage() {
                   ></input>
                   <input
                     id="passwordInputLg"
-                    className="w-full rounded-lg p-2 my-2 border-[1px] border-gray-500"
+                    className="w-full text-black rounded-lg p-2 my-2 border-[1px] border-gray-500"
                     value={currentPassword}
                     onChange={(e) => setCurrentPassword(e.target.value)}
                     style={{ backgroundColor: '#FFF' }}
@@ -132,6 +131,24 @@ export default function AuthPage() {
                     autoComplete="current-password"
                     placeholder="Password"
                   ></input>
+                    {/* <div>
+                      <input
+                        className="mx-1"
+                        type="checkbox"
+                        onClick={() => showPassword('passwordInputLg')}
+                      />
+                      Show Password
+                    </div> */}
+                  {/* </div> */}
+                  <button
+                    type="button"
+                    className="px-4 py-2 w-[24rem] rounded-md shadow-md bg-black hover:shadow-lg hover:bg-gray-300"
+                    onClick={() => {
+                      signIn();
+                    }}
+                  >
+                    Sign in
+                  </button>
                   <div className="flex justify-between">
                     <div
                       className="dark hover:underline cursor-pointer text-left"
@@ -143,25 +160,7 @@ export default function AuthPage() {
                     >
                       Forgot password?
                     </div>
-                    {/* <div>
-                      <input
-                        className="mx-1"
-                        type="checkbox"
-                        onClick={() => showPassword('passwordInputLg')}
-                      />
-                      Show Password
-                    </div> */}
-                    <input className="dark" type="submit" value="Submit" />
                   </div>
-                  <button
-                    type="button"
-                    className="px-4 py-2 w-[24rem] rounded-md shadow-md bg-black hover:shadow-lg hover:bg-gray-300"
-                    onClick={() => {
-                      signIn();
-                    }}
-                  >
-                    Sign in
-                  </button>
                 </form>
               </div>
               {/* Error and verification messages */}
