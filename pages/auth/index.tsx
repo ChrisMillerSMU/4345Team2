@@ -1,4 +1,4 @@
-import { useRouter } from 'next/router';
+import Router, { useRouter } from 'next/router';
 import { app, database } from '../../firebase-client';
 import { collection, addDoc, doc, getDoc, getDocs } from 'firebase/firestore';
 import { useState, useEffect } from 'react';
@@ -44,6 +44,9 @@ export default function AuthPage() {
 
     addUser();
     getUser();
+
+    // redirect to homepage
+    Router.push("/home");
 
     // const getNotes = () => {
     //   getDocs(dbInstance)
