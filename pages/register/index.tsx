@@ -49,14 +49,10 @@ export default function RegisterPage() {
 
   }
 
-  const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event: React.FormEvent<HTMLFormElement>) => { 
+  function handleSubmit() {
     if (email == '' || password == '' || confirmPassword == '') {
-      return alert("Please Fill all fields.");
-    }
-    else {
-      signIn();
-      event.preventDefault();
-    }
+      return alert("Please Fill All fields.");
+    } else signIn();
   }
 
   return (
@@ -144,7 +140,7 @@ export default function RegisterPage() {
                   <button
                     type="button"
                     className="px-4 py-2 w-[24rem] rounded-md shadow-md bg-black hover:shadow-lg hover:bg-gray-300"
-                    onClick={() => handleSubmit}>
+                    onClick={handleSubmit}>
                     Register
                   </button>
                 </form>
@@ -164,7 +160,7 @@ export default function RegisterPage() {
               {/* Main Login Screen */}
               <h1 className="text-3xl text-white font-black text-center">TA Management System</h1> {/* !change */}
               <p className="text-xl text-white text-center p-2">
-                Login
+                Registration
               </p>
               {/* <button
                 className="px-4 py-2 rounded-md shadow-md bg-white my-4 font-bold hover:shadow-lg hover:bg-gray-100"
@@ -253,7 +249,7 @@ export default function RegisterPage() {
               </div> */}
               <button
                 className="px-4 py-2 rounded-md text-black text-lg shadow-md bg-white w-5/6 hover:shadow-lg hover:bg-blue-300"
-                onClick={() => router.push("/home")}
+                onClick={handleSubmit}
               >
               Register
               </button>
