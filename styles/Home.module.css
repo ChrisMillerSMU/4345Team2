@@ -108,6 +108,17 @@
   margin-left: 0.5rem;
 }
 
+.homeHeader {
+  padding: 60px;
+  text-align: left;
+  background: #c8102e;
+  color: white;
+  font-size: 40px;
+  font-family: Arial;
+  font-weight: bold;
+  width: 100%;   
+}
+
 @media (max-width: 600px) {
   .grid {
     width: 100%;
@@ -127,3 +138,5 @@
     filter: invert(1);
   }
 }
+
+
