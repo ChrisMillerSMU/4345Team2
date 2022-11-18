@@ -233,7 +233,7 @@ export default function AuthPage() {
           <p className="my-6">
             You can register here!
           </p>
-          <Link href="/auth/signup">
+          <Link href="/register">
             <a className="px-4 py-2 rounded-xl shadow-md bg-white text-black hover:shadow-lg hover:bg-blue-300">
               Register
             </a>
