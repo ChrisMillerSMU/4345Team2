@@ -1,10 +1,9 @@
 import { useRouter } from 'next/router';
-import { app, db } from '../../firebase-client';
+import { app, db } from '../firebase-client';
 import { collection, doc, setDoc, getDoc } from 'firebase/firestore';
 import { useState, useEffect } from 'react';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import Link from 'next/link';
-import { stringify } from 'querystring';
 
 /**
  * A page that allows the user to register for a new account.
@@ -50,7 +49,7 @@ export default function RegisterPage() {
                     placeholder="Email"
                   ></input>
                   <input
-                    id="PasswordInputLg"
+                    id="ConfirmPasswordInputLg"
                     className="w-full text-black rounded-lg p-2 my-2 border-[1px] border-gray-500"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
@@ -60,58 +59,15 @@ export default function RegisterPage() {
                     autoComplete="current-password"
                     placeholder="Password"
                   ></input>
-                  <input
-                    id="ConfirmPasswordInputLg"
-                    className="w-full text-black rounded-lg p-2 mb-2 border-[1px] border-gray-500"
-                    value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                    style={{ backgroundColor: '#FFF' }}
-                    type="password"
-                    name="confirmPassword"
-                    autoComplete="current-password"
-                    placeholder="Confirm Password"
-                  ></input>
-                    {/*<div className='text-black'>
+                    {/* <div>
                       <input
                         className="mx-1"
                         type="checkbox"
-                        onClick={() => setIsTeacher(!isTeacher)}
+                        onClick={() => showPassword('passwordInputLg')}
                       />
-                      Check if you are a teacher
-                    </div>*/}
-                    <div className='pb-2'>
-                      {!isTeacher ? (
-                        <>
-                          <button
-                            type="button"
-                            className="px-4 mr-4 py-2 w-[11.5rem] rounded-md shadow-md bg-black"
-                            onClick={() => { setIsTeacher(!isTeacher) }}>
-                            Teacher
-                            </button>
-                            <button
-                              type="button"
-                              className="px-4 py-2 w-[11.5rem] rounded-md shadow-md bg-gray-300"
-                              onClick={() => { setIsTeacher(!isTeacher) }}>
-                              Student
-                            </button>
-                        </> 
-                        ) : (
-                          <>
-                            <button
-                              type="button"
-                              className="px-4 mr-4 py-2 w-[11.5rem] rounded-md shadow-md bg-gray-300">
-                              Teacher
-                            </button>
-                            <button
-                              type="button"
-                              className="px-4 py-2 w-[11.5rem] rounded-md shadow-md bg-black hover:shadow-lg"
-                              onClick={() => { setIsTeacher(!isTeacher) }}>
-                              Student
-                            </button>
-                          </>
-                        )
-                      }
-                    </div>
+                      Show Password
+                    </div> */}
+                  {/* </div> */}
                   <button
                     type="button"
                     className="px-4 py-2 w-[24rem] rounded-md shadow-md bg-black hover:shadow-lg hover:bg-gray-300"
@@ -167,47 +123,15 @@ export default function RegisterPage() {
                   ></input>
                   <input
                     id="confirmPasswordInputSm"
-                    className="passwordInput w-full rounded-lg p-2 mb-2 border-[1px] border-gray-500 text-black"
+                    className="passwordInput w-full rounded-lg p-2 my-2 border-[1px] border-gray-500 text-black"
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     style={{ backgroundColor: '#FFF' }}
                     type="password"
-                    name="confirmPassword"
+                    name="password"
                     autoComplete="current-password"
-                    placeholder="Confirm Password"
+                    placeholder="Password"
                   ></input>
-                  <div className='pb-2 text-black'>
-                    {!isTeacher ? (
-                      <>
-                        <button
-                          type="button"
-                          className="px-4 mr-[5%] py-2 w-[47.5%] rounded-md shadow-md bg-white"
-                          onClick={() => { setIsTeacher(!isTeacher) }}>
-                          Teacher
-                          </button>
-                          <button
-                            type="button"
-                            className="px-4 py-2 w-[47.5%] rounded-md shadow-md bg-gray-600">
-                            Student
-                          </button>
-                      </> 
-                      ) : (
-                        <>
-                          <button
-                            type="button"
-                            className="px-4 mr-[5%] py-2 w-[47.5%] rounded-md shadow-md bg-gray-600">
-                            Teacher
-                          </button>
-                          <button
-                            type="button"
-                            className="px-4 py-2 w-[47.5%] rounded-md shadow-md  bg-white"
-                            onClick={() => { setIsTeacher(!isTeacher) }}>
-                            Student
-                          </button>
-                        </>
-                      )
-                    }
-                  </div>
                   <input className="hidden" type="submit" value="Submit" />
                 </form>
               </div>
