@@ -1,9 +1,11 @@
 import { useRouter } from 'next/router';
-import { app, db } from '../firebase-client';
+import { app, db } from '../../firebase-client';
 import { collection, doc, setDoc, getDoc } from 'firebase/firestore';
 import { useState, useEffect } from 'react';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import Link from 'next/link';
+import { stringify } from 'querystring';
+import SMU from './SMU.jpg';
 
 /**
  * A page that allows the user to register for a new account.
@@ -49,7 +51,7 @@ export default function RegisterPage() {
                     placeholder="Email"
                   ></input>
                   <input
-                    id="ConfirmPasswordInputLg"
+                    id="PasswordInputLg"
                     className="w-full text-black rounded-lg p-2 my-2 border-[1px] border-gray-500"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
@@ -59,15 +61,58 @@ export default function RegisterPage() {
                     autoComplete="current-password"
                     placeholder="Password"
                   ></input>
-                    {/* <div>
+                  <input
+                    id="ConfirmPasswordInputLg"
+                    className="w-full text-black rounded-lg p-2 mb-2 border-[1px] border-gray-500"
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    style={{ backgroundColor: '#FFF' }}
+                    type="password"
+                    name="confirmPassword"
+                    autoComplete="current-password"
+                    placeholder="Confirm Password"
+                  ></input>
+                    {/*<div className='text-black'>
                       <input
                         className="mx-1"
                         type="checkbox"
-                        onClick={() => showPassword('passwordInputLg')}
+                        onClick={() => setIsTeacher(!isTeacher)}
                       />
-                      Show Password
-                    </div> */}
-                  {/* </div> */}
+                      Check if you are a teacher
+                    </div>*/}
+                    <div className='pb-2'>
+                      {!isTeacher ? (
+                        <>
+                          <button
+                            type="button"
+                            className="px-4 mr-4 py-2 w-[11.5rem] rounded-md shadow-md bg-black"
+                            onClick={() => { setIsTeacher(!isTeacher) }}>
+                            Teacher
+                            </button>
+                            <button
+                              type="button"
+                              className="px-4 py-2 w-[11.5rem] rounded-md shadow-md bg-gray-300"
+                              onClick={() => { setIsTeacher(!isTeacher) }}>
+                              Student
+                            </button>
+                        </> 
+                        ) : (
+                          <>
+                            <button
+                              type="button"
+                              className="px-4 mr-4 py-2 w-[11.5rem] rounded-md shadow-md bg-gray-300">
+                              Teacher
+                            </button>
+                            <button
+                              type="button"
+                              className="px-4 py-2 w-[11.5rem] rounded-md shadow-md bg-black hover:shadow-lg"
+                              onClick={() => { setIsTeacher(!isTeacher) }}>
+                              Student
+                            </button>
+                          </>
+                        )
+                      }
+                    </div>
                   <button
                     type="button"
                     className="px-4 py-2 w-[24rem] rounded-md shadow-md bg-black hover:shadow-lg hover:bg-gray-300"
@@ -79,6 +124,9 @@ export default function RegisterPage() {
               {/* Error and verification messages */}
               <div className="mt-4 w-[24rem]">{errorMsg}</div>
             </div>
+        </div>
+        <div className="flex flex-col justify-center items-center h-full w-1/3 bg-black-200 text-center p-4">
+          <img src={SMU.src}/>
         </div>
       </section>
 
@@ -123,15 +171,47 @@ export default function RegisterPage() {
                   ></input>
                   <input
                     id="confirmPasswordInputSm"
-                    className="passwordInput w-full rounded-lg p-2 my-2 border-[1px] border-gray-500 text-black"
+                    className="passwordInput w-full rounded-lg p-2 mb-2 border-[1px] border-gray-500 text-black"
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     style={{ backgroundColor: '#FFF' }}
                     type="password"
-                    name="password"
+                    name="confirmPassword"
                     autoComplete="current-password"
-                    placeholder="Password"
+                    placeholder="Confirm Password"
                   ></input>
+                  <div className='pb-2 text-black'>
+                    {!isTeacher ? (
+                      <>
+                        <button
+                          type="button"
+                          className="px-4 mr-[5%] py-2 w-[47.5%] rounded-md shadow-md bg-white"
+                          onClick={() => { setIsTeacher(!isTeacher) }}>
+                          Teacher
+                          </button>
+                          <button
+                            type="button"
+                            className="px-4 py-2 w-[47.5%] rounded-md shadow-md bg-gray-600">
+                            Student
+                          </button>
+                      </> 
+                      ) : (
+                        <>
+                          <button
+                            type="button"
+                            className="px-4 mr-[5%] py-2 w-[47.5%] rounded-md shadow-md bg-gray-600">
+                            Teacher
+                          </button>
+                          <button
+                            type="button"
+                            className="px-4 py-2 w-[47.5%] rounded-md shadow-md  bg-white"
+                            onClick={() => { setIsTeacher(!isTeacher) }}>
+                            Student
+                          </button>
+                        </>
+                      )
+                    }
+                  </div>
                   <input className="hidden" type="submit" value="Submit" />
                 </form>
               </div>
