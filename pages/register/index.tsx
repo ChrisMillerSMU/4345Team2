@@ -23,12 +23,40 @@ export default function RegisterPage() {
   const dbInstance = collection(db, "users");
 
   const router = useRouter();
+  const signIn = () => {
+    console.log("Registration!")
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) { 
-    if (email == '' || password == '' || confirmPassword == '') {
-        return alert("Please Fill all fields.");
+    const addUser = async () => {
+      await setDoc(doc(db, "users", email), {
+        password: password,
+        teacher: isTeacher
+      });
+    }
+
+    const getUser = async () => {
+      const user = await getDoc(doc(db, "users", email));
+      if (!user.exists()) {
+        addUser();
+        console.log("Registration Successful!")
+        router.push("/home");
+      } else {
+        console.log("User Already Exists!")
+        return alert("User Already Exists! Try Another Email.");
       }
-    event.preventDefault();
+    }
+
+    getUser();
+
+  }
+
+  const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event: React.FormEvent<HTMLFormElement>) => { 
+    if (email == '' || password == '' || confirmPassword == '') {
+      return alert("Please Fill all fields.");
+    }
+    else {
+      signIn();
+      event.preventDefault();
+    }
   }
 
   return (
@@ -116,7 +144,7 @@ export default function RegisterPage() {
                   <button
                     type="button"
                     className="px-4 py-2 w-[24rem] rounded-md shadow-md bg-black hover:shadow-lg hover:bg-gray-300"
-                    onClick={() => { router.push("/home"); }}>
+                    onClick={() => handleSubmit}>
                     Register
                   </button>
                 </form>
