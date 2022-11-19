@@ -23,14 +23,35 @@ export default function RegisterPage() {
   const dbInstance = collection(db, "users");
 
   const router = useRouter();
+  const signIn = () => {
+    console.log("Registration!")
+    const addUser = async () => {
+      await setDoc(doc(db, "users", email), {
+        password: password,
+        teacher: isTeacher
+      });
+    }
+
+    const getUser = async () => {
+      const user = await getDoc(doc(db, "users", email));
+      if (!user.exists()) {
+        addUser();
+        console.log("Registration Successful!")
+        router.push("/home");
+      } else {
+        console.log("User Already Exists!")
+        return alert("User Already Exists! Try Another Email.");
+      }
+    }
+
+    getUser();
+
+  }
 
   function handleSubmit() {
     if (email == '' || password == '' || confirmPassword == '') {
-      return alert("Please Fill all fields.");
-    }
-    else if (password != confirmPassword) {
-      return alert("Passwords not matching");
-    }
+      return alert("Please Fill All fields.");
+    } else signIn();
   }
 
   return (
@@ -82,46 +103,49 @@ export default function RegisterPage() {
                       />
                       Check if you are a teacher
                     </div>*/}
-                <div className='pb-2'>
-                  {!isTeacher ? (
-                    <>
-                      <button
-                        type="button"
-                        className="px-4 mr-4 py-2 w-[11.5rem] rounded-md shadow-md bg-black"
-                        onClick={() => { setIsTeacher(!isTeacher) }}>
-                        Teacher
-                      </button>
-                      <button
-                        type="button"
-                        className="px-4 py-2 w-[11.5rem] rounded-md shadow-md bg-gray-300"
-                        onClick={() => { setIsTeacher(!isTeacher) }}>
-                        Student
-                      </button>
-                    </>
-                  ) : (
-                    <>
-                      <button
-                        type="button"
-                        className="px-4 mr-4 py-2 w-[11.5rem] rounded-md shadow-md bg-gray-300">
-                        Teacher
-                      </button>
-                      <button
-                        type="button"
-                        className="px-4 py-2 w-[11.5rem] rounded-md shadow-md bg-black hover:shadow-lg"
-                        onClick={() => { setIsTeacher(!isTeacher) }}>
-                        Student
-                      </button>
-                    </>
-                  )
-                  }
-                </div>
-                <button
-                  type="button"
-                  className="px-4 py-2 w-[24rem] rounded-md shadow-md bg-black hover:shadow-lg hover:bg-gray-300"
-                  onClick={() => { router.push("/home"); }}>
-                  Register
-                </button>
-              </form>
+                    <div className='pb-2'>
+                      {!isTeacher ? (
+                        <>
+                          <button
+                            type="button"
+                            className="px-4 mr-4 py-2 w-[11.5rem] rounded-md shadow-md bg-black"
+                            onClick={() => { setIsTeacher(!isTeacher) }}>
+                            Teacher
+                            </button>
+                            <button
+                              type="button"
+                              className="px-4 py-2 w-[11.5rem] rounded-md shadow-md bg-gray-300"
+                              onClick={() => { setIsTeacher(!isTeacher) }}>
+                              Student
+                            </button>
+                        </> 
+                        ) : (
+                          <>
+                            <button
+                              type="button"
+                              className="px-4 mr-4 py-2 w-[11.5rem] rounded-md shadow-md bg-gray-300">
+                              Teacher
+                            </button>
+                            <button
+                              type="button"
+                              className="px-4 py-2 w-[11.5rem] rounded-md shadow-md bg-black hover:shadow-lg"
+                              onClick={() => { setIsTeacher(!isTeacher) }}>
+                              Student
+                            </button>
+                          </>
+                        )
+                      }
+                    </div>
+                  <button
+                    type="button"
+                    className="px-4 py-2 w-[24rem] rounded-md shadow-md bg-black hover:shadow-lg hover:bg-gray-300"
+                    onClick={handleSubmit}>
+                    Register
+                  </button>
+                </form>
+              </div>
+              {/* Error and verification messages */}
+              <div className="mt-4 w-[24rem]">{errorMsg}</div>
             </div>
             {/* Error and verification messages */}
             <div className="mt-4 w-[24rem]">{errorMsg}</div>
@@ -135,12 +159,12 @@ export default function RegisterPage() {
       {/* Small Screen */}
       <section className="flex md:hidden min-h-screen h-screen justify-center bg-black-200">
         <div className="flex flex-col items-center justify-center w-5/6 h-4/5 bg-black-200 my-8 p-6">
-          {/* Main Login Screen */}
-          <h1 className="text-3xl text-white font-black text-center">TA Management System</h1> {/* !change */}
-          <p className="text-xl text-white text-center p-2">
-            Login
-          </p>
-          {/* <button
+              {/* Main Login Screen */}
+              <h1 className="text-3xl text-white font-black text-center">TA Management System</h1> {/* !change */}
+              <p className="text-xl text-white text-center p-2">
+                Registration
+              </p>
+              {/* <button
                 className="px-4 py-2 rounded-md shadow-md bg-white my-4 font-bold hover:shadow-lg hover:bg-gray-100"
                 onClick={() => signInWithGoogle()}
               >
@@ -225,14 +249,14 @@ export default function RegisterPage() {
                 />
                 Show Password
               </div> */}
-          <button
-            className="px-4 py-2 rounded-md text-black text-lg shadow-md bg-white w-5/6 hover:shadow-lg hover:bg-blue-300"
-            onClick={() => router.push("/home")}
-          >
-            Register
-          </button>
-          {/* Error and verification messages */}
-          <div className="text-sm text-white">{errorMsg}</div>
+              <button
+                className="px-4 py-2 rounded-md text-black text-lg shadow-md bg-white w-5/6 hover:shadow-lg hover:bg-blue-300"
+                onClick={handleSubmit}
+              >
+              Register
+              </button>
+              {/* Error and verification messages */}
+              <div className="text-sm text-white">{errorMsg}</div>
         </div>
       </section>
     </>
