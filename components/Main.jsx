@@ -11,7 +11,7 @@ export function Main() {
           <section className="overflow-clip">
             <ParallaxText description={'Login'} start={600} side={2} url={'/auth'}></ParallaxText>
             <ParallaxText description={'Apply'} start={600} side={-2} url={'/application'}></ParallaxText>
-            <ParallaxText description={'Search'} start={600} side={2} url={''}></ParallaxText>
+            <ParallaxText description={'Create'} start={600} side={2} url={'positionForm'}></ParallaxText>
           </section>
         </div>
       </div>

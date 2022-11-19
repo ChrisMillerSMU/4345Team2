@@ -58,99 +58,95 @@ export default function RegisterPage() {
     <>
       <section className="min-h-screen h-screen md:flex hidden">
         <div className="flex flex-col justify-center items-center h-full w-2/3 text-center bg-white p-4">
-
-          <div>
-            <h1 className="dark text-3xl p-4">Register</h1>
-            <div className="w-[24rem]">
-              <form onSubmit={handleSubmit}>
-                <input
-                  className="w-full text-black rounded-lg p-2 border-[1px] border-gray-500"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  style={{ backgroundColor: '#FFF' }}
-                  type="text"
-                  name="email"
-                  autoComplete="email"
-                  placeholder="Email"
-                ></input>
-                <input
-                  id="PasswordInputLg"
-                  className="w-full text-black rounded-lg p-2 my-2 border-[1px] border-gray-500"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  style={{ backgroundColor: '#FFF' }}
-                  type="password"
-                  name="password"
-                  autoComplete="current-password"
-                  placeholder="Password"
-                ></input>
-                <input
-                  id="ConfirmPasswordInputLg"
-                  className="w-full text-black rounded-lg p-2 mb-2 border-[1px] border-gray-500"
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                  style={{ backgroundColor: '#FFF' }}
-                  type="password"
-                  name="confirmPassword"
-                  autoComplete="current-password"
-                  placeholder="Confirm Password"
-                ></input>
-                {/*<div className='text-black'>
-                      <input
-                        className="mx-1"
-                        type="checkbox"
-                        onClick={() => setIsTeacher(!isTeacher)}
-                      />
-                      Check if you are a teacher
-                    </div>*/}
-                    <div className='pb-2'>
-                      {!isTeacher ? (
-                        <>
-                          <button
-                            type="button"
-                            className="px-4 mr-4 py-2 w-[11.5rem] rounded-md shadow-md bg-black"
-                            onClick={() => { setIsTeacher(!isTeacher) }}>
-                            Teacher
-                            </button>
-                            <button
-                              type="button"
-                              className="px-4 py-2 w-[11.5rem] rounded-md shadow-md bg-gray-300"
-                              onClick={() => { setIsTeacher(!isTeacher) }}>
-                              Student
-                            </button>
-                        </> 
-                        ) : (
-                          <>
-                            <button
-                              type="button"
-                              className="px-4 mr-4 py-2 w-[11.5rem] rounded-md shadow-md bg-gray-300">
-                              Teacher
-                            </button>
-                            <button
-                              type="button"
-                              className="px-4 py-2 w-[11.5rem] rounded-md shadow-md bg-black hover:shadow-lg"
-                              onClick={() => { setIsTeacher(!isTeacher) }}>
-                              Student
-                            </button>
-                          </>
-                        )
-                      }
-                    </div>
-                  <button
-                    type="button"
-                    className="px-4 py-2 w-[24rem] rounded-md shadow-md bg-black hover:shadow-lg hover:bg-gray-300"
-                    onClick={handleSubmit}>
-                    Register
-                  </button>
-                </form>
-              </div>
-              {/* Error and verification messages */}
-              <div className="mt-4 w-[24rem]">{errorMsg}</div>
-            </div>
-            {/* Error and verification messages */}
-            <div className="mt-4 w-[24rem]">{errorMsg}</div>
+        <h1 className="dark text-3xl p-4">Register</h1>
+        <div className="w-[24rem]">
+          <form onSubmit={handleSubmit}>
+            <input
+              className="w-full text-black rounded-lg p-2 border-[1px] border-gray-500"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              style={{ backgroundColor: '#FFF' }}
+              type="text"
+              name="email"
+              autoComplete="email"
+              placeholder="Email"
+            ></input>
+            <input
+              id="PasswordInputLg"
+              className="w-full text-black rounded-lg p-2 my-2 border-[1px] border-gray-500"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              style={{ backgroundColor: '#FFF' }}
+              type="password"
+              name="password"
+              autoComplete="current-password"
+              placeholder="Password"
+            ></input>
+            <input
+              id="ConfirmPasswordInputLg"
+              className="w-full text-black rounded-lg p-2 mb-2 border-[1px] border-gray-500"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              style={{ backgroundColor: '#FFF' }}
+              type="password"
+              name="confirmPassword"
+              autoComplete="current-password"
+              placeholder="Confirm Password"
+            ></input>
+            {/*<div className='text-black'>
+                  <input
+                    className="mx-1"
+                    type="checkbox"
+                    onClick={() => setIsTeacher(!isTeacher)}
+                  />
+                  Check if you are a teacher
+                </div>*/}
+                <div className='pb-2'>
+                  {!isTeacher ? (
+                    <>
+                      <button
+                        type="button"
+                        className="px-4 mr-4 py-2 w-[11.5rem] rounded-md shadow-md bg-black"
+                        onClick={() => { setIsTeacher(!isTeacher) }}>
+                        Teacher
+                        </button>
+                        <button
+                          type="button"
+                          className="px-4 py-2 w-[11.5rem] rounded-md shadow-md bg-gray-300"
+                          onClick={() => { setIsTeacher(!isTeacher) }}>
+                          Student
+                        </button>
+                    </> 
+                    ) : (
+                      <>
+                        <button
+                          type="button"
+                          className="px-4 mr-4 py-2 w-[11.5rem] rounded-md shadow-md bg-gray-300">
+                          Teacher
+                        </button>
+                        <button
+                          type="button"
+                          className="px-4 py-2 w-[11.5rem] rounded-md shadow-md bg-black hover:shadow-lg"
+                          onClick={() => { setIsTeacher(!isTeacher) }}>
+                          Student
+                        </button>
+                      </>
+                    )
+                  }
+                </div>
+              <button
+                type="button"
+                className="px-4 py-2 w-[24rem] rounded-md shadow-md bg-black hover:shadow-lg hover:bg-gray-300"
+                onClick={handleSubmit}>
+                Register
+              </button>
+            </form>
           </div>
+          {/* Error and verification messages */}
+          <div className="mt-4 w-[24rem]">{errorMsg}</div>
         </div>
+        {/* Error and verification messages */}
+        <div className="mt-4 w-[24rem]">{errorMsg}</div>
         <div className="flex flex-col justify-center items-center h-full w-1/3 bg-black-200 text-center p-4">
           <img src={SMU.src} />
         </div>
