@@ -460,7 +460,6 @@ export default function applicationPage() {
           <img className='p-4' src='https://media.glassdoor.com/l/a0/51/35/f3/main-campus.jpg'></img>
           <img className='p-4' src='https://storage.googleapis.com/collegetuitioncompare/images/webp/colleges/228246-southern-methodist-university.webp'></img>
           <img className='p-4' src='https://media.bizj.us/view/img/2233301/smu-bobby-b-lyle-school-of-engineering*1024xx900-506-0-118.jpg'></img>
-          <img className='p-4' src='https://www.smu.edu/-/media/Site/Home/Summer21/intro-campus.jpg'></img>
         </div>
       </section>
 

@@ -119,7 +119,7 @@ export default function AuthPage() {
         <div className="flex flex-col justify-center items-center h-full w-2/3 text-center bg-white p-4">
           {!passwordResetDialog ? (
             <div>
-              <h1 className="dark text-3xl p-4">Login to your account</h1>
+              <h1 className="font-bold dark text-3xl p-4">Login</h1>
               {/* <button
                 className="px-4 py-2 rounded-md shadow-md bg-white my-4 text-lg font-bold hover:shadow-lg hover:bg-gray-100"
                 onClick={() => signInWithGoogle()}
@@ -168,7 +168,7 @@ export default function AuthPage() {
                   >
                     Sign in
                   </button>
-                  <div className="flex justify-between">
+                  {/* <div className="flex justify-between">
                     <div
                       className="dark hover:underline cursor-pointer text-left"
                       onClick={() => {
@@ -179,7 +179,7 @@ export default function AuthPage() {
                     >
                       Forgot password?
                     </div>
-                  </div>
+                  </div> */}
                 </form>
               </div>
               {/* Error and verification messages */}

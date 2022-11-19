@@ -58,7 +58,7 @@ export default function RegisterPage() {
     <>
       <section className="min-h-screen h-screen md:flex hidden">
         <div className="flex flex-col justify-center items-center h-full w-2/3 text-center bg-white p-4">
-        <h1 className="dark text-3xl p-4">Register</h1>
+        <h1 className="font-bold dark text-3xl p-4">Register</h1>
         <div className="w-[24rem]">
           <form onSubmit={handleSubmit}>
             <input
@@ -147,9 +147,7 @@ export default function RegisterPage() {
         </div>
         {/* Error and verification messages */}
         <div className="mt-4 w-[24rem]">{errorMsg}</div>
-        <div className="flex flex-col justify-center items-center h-full w-1/3 bg-black-200 text-center p-4">
-          <img src={SMU.src} />
-        </div>
+        <img src={SMU.src} />
       </section>
 
       {/* Small Screen */}
