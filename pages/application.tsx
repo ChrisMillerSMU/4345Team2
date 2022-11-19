@@ -16,9 +16,9 @@ export default function applicationPage() {
   const [currentName, setCurrentName] = useState('');
   const [currentEmail, setCurrentEmail] = useState('');
   const [currentGradeLevel, setCurrentGradeLevel] = useState('');
-  const [knownLanguages, setKnownLanguages] = useState('');
+  const [knownLanguages, setKnownLanguages] = useState([]);
   const [currentOtherLanguages, setCurrentOtherLanguages] = useState('');
-  const [coreClassesList, setCoreClassesList] = useState('');
+  const [coreClassesList, setCoreClassesList] = useState([]);
   const [currentSkills, setCurrentSkills] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
   const dbInstance = collection(db, "users");
@@ -124,7 +124,88 @@ export default function applicationPage() {
   // }
 
   function handleSubmit() { 
+    // name done, email done, gradelevel done
+    // add known languages from checkboxes and textbox
+    getKnownLanguages();
+    // add core classes taken from checkboxes
+    getCoreClasses();
+    // other skills done
     addApplication();
+  }
+
+  function getKnownLanguages() {
+    if (document.querySelector('#Java-checkbox').checked) {
+      knownLanguages.push(document.querySelector('#Java-checkbox').value);
+    }
+    if (document.querySelector('#C-checkbox').checked){
+      knownLanguages.push(document.querySelector('#C-checkbox').value);
+    } 
+    if (document.querySelector('#Python-checkbox').checked){
+      knownLanguages.push(document.querySelector('#Python-checkbox').value);
+    } 
+    if (document.querySelector('#JavaScript-checkbox').checked){
+      knownLanguages.push(document.querySelector('#JavaScript-checkbox').value);
+    } 
+    if (document.querySelector('#SQL-checkbox').checked){
+      knownLanguages.push(document.querySelector('#SQL-checkbox').value);
+    } 
+    if (document.querySelector('#MATLAB-checkbox').checked){
+      knownLanguages.push(document.querySelector('#MATLAB-checkbox').value);
+    } 
+    if (currentOtherLanguages != '') {knownLanguages.push(currentOtherLanguages);}
+    console.log(knownLanguages);
+  }
+
+  function getCoreClasses() {
+    if (document.querySelector('#CS1341-checkbox').checked) {
+      coreClassesList.push(document.querySelector('#CS1341-checkbox').value);
+    } 
+    if (document.querySelector('#CS1342-checkbox').checked){
+      coreClassesList.push(document.querySelector('#CS1342-checkbox').value);
+    } 
+    if (document.querySelector('#CS2240-checkbox').checked){
+      coreClassesList.push(document.querySelector('#CS2240-checkbox').value);
+    } 
+    if (document.querySelector('#CS2341-checkbox').checked){
+      coreClassesList.push(document.querySelector('#CS2341-checkbox').value);
+    } 
+    if (document.querySelector('#CS3330-checkbox').checked){
+      coreClassesList.push(document.querySelector('#CS3330-checkbox').value);
+    } 
+    if (document.querySelector('#CS3339-checkbox').checked){
+      coreClassesList.push(document.querySelector('#CS3339-checkbox').value);
+    }
+    if (document.querySelector('#CS3342-checkbox').checked){
+      coreClassesList.push(document.querySelector('#CS3342-checkbox').value);
+    }
+    if (document.querySelector('#CS3345-checkbox').checked){
+      coreClassesList.push(document.querySelector('#CS3345-checkbox').value);
+    }
+    if (document.querySelector('#CS3353-checkbox').checked){
+      coreClassesList.push(document.querySelector('#CS3353-checkbox').value);
+    }
+    if (document.querySelector('#CS3381-checkbox').checked){
+      coreClassesList.push(document.querySelector('#CS3381-checkbox').value);
+    }
+    if (document.querySelector('#CS4344-checkbox').checked){
+      coreClassesList.push(document.querySelector('#CS4344-checkbox').value);
+    }
+    if (document.querySelector('#CS4345-checkbox').checked){
+      coreClassesList.push(document.querySelector('#CS4345-checkbox').value);
+    }
+    if (document.querySelector('#CS4351-checkbox').checked){
+      coreClassesList.push(document.querySelector('#CS4351-checkbox').value);
+    }
+    if (document.querySelector('#CS4352-checkbox').checked){
+      coreClassesList.push(document.querySelector('#CS4352-checkbox').value);
+    }
+    if (document.querySelector('#CS4381-checkbox').checked){
+      coreClassesList.push(document.querySelector('#CS4381-checkbox').value);
+    }
+    if (document.querySelector('#CS5343-checkbox').checked){
+      coreClassesList.push(document.querySelector('#CS5343-checkbox').value);
+    }
+    console.log(coreClassesList);
   }
 
   return (
@@ -168,33 +249,33 @@ export default function applicationPage() {
                     autoComplete="gradeLevel"
                     placeholder="gradeLevel"
                   >
-                    <option value="" disabled selected hidden>Choose Gradelevel</option>
-                    <option value="1">First-Year (Undergrad)</option>
-                    <option value="2">Sophomore (Undergrad)</option>
-                    <option value="3">Junior (Undergrad)</option>
-                    <option value="4">Senior (Undergrad)</option>
-                    <option value="5">M.S.</option>
-                    <option value="6">Ph.D.</option>
+                    <option value="filler" disabled selected hidden>Choose Education Level</option>
+                    <option value="First-Year">First-Year (Undergrad)</option>
+                    <option value="Sophomore">Sophomore (Undergrad)</option>
+                    <option value="Junior">Junior (Undergrad)</option>
+                    <option value="Senior">Senior (Undergrad)</option>
+                    <option value="M.S.">M.S.</option>
+                    <option value="Ph.D.">Ph.D.</option>
                   </select>
                   <h1 className="font-bold dark text-3xl p-4 mt-2 text-center">Known Languages</h1>
                   <hr className="mb-10 h-px bg-gray-500 border-0" />
                   <div className="form-check text-left">
-                    <input 
-                      id="Java-checkbox" 
+                    <input
+                      id="Java-checkbox"
                       type="checkbox" 
-                      value="Java" 
+                      value="Java"
                       className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                     />
                     <label htmlFor="Java-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Java</label>
                   </div>
                   <div className="form-check">
                     <input 
-                      id="C++-checkbox" 
+                      id="C-checkbox" 
                       type="checkbox" 
-                      value="C++" 
+                      value="C" 
                       className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                     />
-                    <label htmlFor="C++-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">C++</label>
+                    <label htmlFor="C-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">C++</label>
                   </div>
                   <div className="form-check">
                     <input 
