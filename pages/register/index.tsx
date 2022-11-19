@@ -10,7 +10,7 @@ import SMU from './SMU.jpg';
 /**
  * A page that allows the user to register for a new account.
  *
- * Route: /auth/signup
+ * Route: /register
  */
 
 export default function RegisterPage() {
@@ -25,7 +25,6 @@ export default function RegisterPage() {
   const router = useRouter();
   const signIn = () => {
     console.log("Registration!")
-
     const addUser = async () => {
       await setDoc(doc(db, "users", email), {
         password: password,
@@ -59,44 +58,44 @@ export default function RegisterPage() {
     <>
       <section className="min-h-screen h-screen md:flex hidden">
         <div className="flex flex-col justify-center items-center h-full w-2/3 text-center bg-white p-4">
-          
-            <div>
-              <h1 className="dark text-3xl p-4">Register</h1>
-              <div className="w-[24rem]">
-                <form onSubmit={handleSubmit}>
-                  <input
-                    className="w-full text-black rounded-lg p-2 border-[1px] border-gray-500"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    style={{ backgroundColor: '#FFF' }}
-                    type="text"
-                    name="email"
-                    autoComplete="email"
-                    placeholder="Email"
-                  ></input>
-                  <input
-                    id="PasswordInputLg"
-                    className="w-full text-black rounded-lg p-2 my-2 border-[1px] border-gray-500"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    style={{ backgroundColor: '#FFF' }}
-                    type="password"
-                    name="password"
-                    autoComplete="current-password"
-                    placeholder="Password"
-                  ></input>
-                  <input
-                    id="ConfirmPasswordInputLg"
-                    className="w-full text-black rounded-lg p-2 mb-2 border-[1px] border-gray-500"
-                    value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                    style={{ backgroundColor: '#FFF' }}
-                    type="password"
-                    name="confirmPassword"
-                    autoComplete="current-password"
-                    placeholder="Confirm Password"
-                  ></input>
-                    {/*<div className='text-black'>
+
+          <div>
+            <h1 className="dark text-3xl p-4">Register</h1>
+            <div className="w-[24rem]">
+              <form onSubmit={handleSubmit}>
+                <input
+                  className="w-full text-black rounded-lg p-2 border-[1px] border-gray-500"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  style={{ backgroundColor: '#FFF' }}
+                  type="text"
+                  name="email"
+                  autoComplete="email"
+                  placeholder="Email"
+                ></input>
+                <input
+                  id="PasswordInputLg"
+                  className="w-full text-black rounded-lg p-2 my-2 border-[1px] border-gray-500"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  style={{ backgroundColor: '#FFF' }}
+                  type="password"
+                  name="password"
+                  autoComplete="current-password"
+                  placeholder="Password"
+                ></input>
+                <input
+                  id="ConfirmPasswordInputLg"
+                  className="w-full text-black rounded-lg p-2 mb-2 border-[1px] border-gray-500"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  style={{ backgroundColor: '#FFF' }}
+                  type="password"
+                  name="confirmPassword"
+                  autoComplete="current-password"
+                  placeholder="Confirm Password"
+                ></input>
+                {/*<div className='text-black'>
                       <input
                         className="mx-1"
                         type="checkbox"
@@ -148,9 +147,12 @@ export default function RegisterPage() {
               {/* Error and verification messages */}
               <div className="mt-4 w-[24rem]">{errorMsg}</div>
             </div>
+            {/* Error and verification messages */}
+            <div className="mt-4 w-[24rem]">{errorMsg}</div>
+          </div>
         </div>
         <div className="flex flex-col justify-center items-center h-full w-1/3 bg-black-200 text-center p-4">
-          <img src={SMU.src}/>
+          <img src={SMU.src} />
         </div>
       </section>
 
@@ -168,78 +170,78 @@ export default function RegisterPage() {
               >
                 Sign in with Google
               </button> */}
-              {/*<div className="text-sm">or</div>*/}
-              {/* Account credential input fields */}
-              <div className="w-5/6">
-                <form onSubmit={handleSubmit}>
-                  <input
-                    className="w-full rounded-lg p-2 border-[1px] border-gray-500 text-black"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    style={{ backgroundColor: '#FFF' }}
-                    type="text"
-                    name="email"
-                    autoComplete="email"
-                    placeholder="Email"
-                  ></input>
-                  <input
-                    id="passwordInputSm"
-                    className="passwordInput w-full rounded-lg p-2 my-2 border-[1px] border-gray-500 text-black"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    style={{ backgroundColor: '#FFF' }}
-                    type="password"
-                    name="password"
-                    autoComplete="current-password"
-                    placeholder="Password"
-                  ></input>
-                  <input
-                    id="confirmPasswordInputSm"
-                    className="passwordInput w-full rounded-lg p-2 mb-2 border-[1px] border-gray-500 text-black"
-                    value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                    style={{ backgroundColor: '#FFF' }}
-                    type="password"
-                    name="confirmPassword"
-                    autoComplete="current-password"
-                    placeholder="Confirm Password"
-                  ></input>
-                  <div className='pb-2 text-black'>
-                    {!isTeacher ? (
-                      <>
-                        <button
-                          type="button"
-                          className="px-4 mr-[5%] py-2 w-[47.5%] rounded-md shadow-md bg-white"
-                          onClick={() => { setIsTeacher(!isTeacher) }}>
-                          Teacher
-                          </button>
-                          <button
-                            type="button"
-                            className="px-4 py-2 w-[47.5%] rounded-md shadow-md bg-gray-600">
-                            Student
-                          </button>
-                      </> 
-                      ) : (
-                        <>
-                          <button
-                            type="button"
-                            className="px-4 mr-[5%] py-2 w-[47.5%] rounded-md shadow-md bg-gray-600">
-                            Teacher
-                          </button>
-                          <button
-                            type="button"
-                            className="px-4 py-2 w-[47.5%] rounded-md shadow-md  bg-white"
-                            onClick={() => { setIsTeacher(!isTeacher) }}>
-                            Student
-                          </button>
-                        </>
-                      )
-                    }
-                  </div>
-                  <input className="hidden" type="submit" value="Submit" />
-                </form>
+          {/*<div className="text-sm">or</div>*/}
+          {/* Account credential input fields */}
+          <div className="w-5/6">
+            <form onSubmit={handleSubmit}>
+              <input
+                className="w-full rounded-lg p-2 border-[1px] border-gray-500 text-black"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                style={{ backgroundColor: '#FFF' }}
+                type="text"
+                name="email"
+                autoComplete="email"
+                placeholder="Email"
+              ></input>
+              <input
+                id="passwordInputSm"
+                className="passwordInput w-full rounded-lg p-2 my-2 border-[1px] border-gray-500 text-black"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                style={{ backgroundColor: '#FFF' }}
+                type="password"
+                name="password"
+                autoComplete="current-password"
+                placeholder="Password"
+              ></input>
+              <input
+                id="confirmPasswordInputSm"
+                className="passwordInput w-full rounded-lg p-2 mb-2 border-[1px] border-gray-500 text-black"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                style={{ backgroundColor: '#FFF' }}
+                type="password"
+                name="confirmPassword"
+                autoComplete="current-password"
+                placeholder="Confirm Password"
+              ></input>
+              <div className='pb-2 text-black'>
+                {!isTeacher ? (
+                  <>
+                    <button
+                      type="button"
+                      className="px-4 mr-[5%] py-2 w-[47.5%] rounded-md shadow-md bg-white"
+                      onClick={() => { setIsTeacher(!isTeacher) }}>
+                      Teacher
+                    </button>
+                    <button
+                      type="button"
+                      className="px-4 py-2 w-[47.5%] rounded-md shadow-md bg-gray-600">
+                      Student
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <button
+                      type="button"
+                      className="px-4 mr-[5%] py-2 w-[47.5%] rounded-md shadow-md bg-gray-600">
+                      Teacher
+                    </button>
+                    <button
+                      type="button"
+                      className="px-4 py-2 w-[47.5%] rounded-md shadow-md  bg-white"
+                      onClick={() => { setIsTeacher(!isTeacher) }}>
+                      Student
+                    </button>
+                  </>
+                )
+                }
               </div>
-              {/* <div>
+              <input className="hidden" type="submit" value="Submit" />
+            </form>
+          </div>
+          {/* <div>
                 <input
                   className="mr-1"
                   type="checkbox"
