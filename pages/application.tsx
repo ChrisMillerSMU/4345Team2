@@ -259,228 +259,236 @@ export default function applicationPage() {
                   </select>
                   <h1 className="font-bold dark text-3xl p-4 mt-2 text-center">Known Languages</h1>
                   <hr className="mb-10 h-px bg-gray-500 border-0" />
-                  <div className="form-check text-left">
+                  <div className="ml-3">
+                    <div className="form-check text-left">
+                      <input 
+                        id="Java-checkbox" 
+                        type="checkbox" 
+                        value="Java" 
+                        className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                      />
+                      <label htmlFor="Java-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Java</label>
+                    </div>
+                    <div className="form-check">
+                      <input 
+                        id="C++-checkbox" 
+                        type="checkbox" 
+                        value="C++" 
+                        className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                      />
+                      <label htmlFor="C++-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">C++</label>
+                    </div>
+                    <div className="form-check">
+                      <input 
+                        id="Python-checkbox" 
+                        type="checkbox" 
+                        value="Python" 
+                        className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                      />
+                      <label htmlFor="Python-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Python</label>
+                    </div>
+                    <div className="form-check">
+                      <input 
+                        id="JavaScript-checkbox" 
+                        type="checkbox" 
+                        value="JavaScript" 
+                        className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                      />
+                      <label htmlFor="JavaScript-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">JavaScript</label>
+                    </div>
+                    <div className="form-check">
+                      <input 
+                        id="SQL-checkbox" 
+                        type="checkbox" 
+                        value="SQL" 
+                        className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                      />
+                      <label htmlFor="SQL-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">SQL</label>
+                    </div>
+                    <div className="form-check">
+                      <input 
+                        id="MATLAB-checkbox" 
+                        type="checkbox" 
+                        value="MATLAB" 
+                        className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                      />
+                      <label htmlFor="MATLAB-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">MATLAB</label>
+                    </div>
+                  </div>
+                  <div className="text-center mt-4 mb-5">
                     <input
-                      id="Java-checkbox"
-                      type="checkbox" 
-                      value="Java"
-                      className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                    />
-                    <label htmlFor="Java-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Java</label>
+                      className="w-full text-black rounded-lg p-2 border-[1px] border-gray-500"
+                      value={currentOtherLanguages}
+                      onChange={(e) => setCurrentOtherLanguages(e.target.value)}
+                      style={{ backgroundColor: '#FFF' }}
+                      type="text"
+                      name="otherLanguages"
+                      autoComplete="otherLanguages"
+                      placeholder="Other Languages"
+                    ></input>
                   </div>
-                  <div className="form-check">
-                    <input 
-                      id="C-checkbox" 
-                      type="checkbox" 
-                      value="C" 
-                      className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                    />
-                    <label htmlFor="C-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">C++</label>
-                  </div>
-                  <div className="form-check">
-                    <input 
-                      id="Python-checkbox" 
-                      type="checkbox" 
-                      value="Python" 
-                      className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                    />
-                    <label htmlFor="Python-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Python</label>
-                  </div>
-                  <div className="form-check">
-                    <input 
-                      id="JavaScript-checkbox" 
-                      type="checkbox" 
-                      value="JavaScript" 
-                      className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                    />
-                    <label htmlFor="JavaScript-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">JavaScript</label>
-                  </div>
-                  <div className="form-check">
-                    <input 
-                      id="SQL-checkbox" 
-                      type="checkbox" 
-                      value="SQL" 
-                      className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                    />
-                    <label htmlFor="SQL-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">SQL</label>
-                  </div>
-                  <div className="form-check">
-                    <input 
-                      id="MATLAB-checkbox" 
-                      type="checkbox" 
-                      value="MATLAB" 
-                      className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                    />
-                    <label htmlFor="MATLAB-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">MATLAB</label>
-                  </div>
-                  <input
-                    className="w-50 text-black rounded-lg p-2 border-[1px] border-gray-500"
-                    value={currentOtherLanguages}
-                    onChange={(e) => setCurrentOtherLanguages(e.target.value)}
-                    style={{ backgroundColor: '#FFF' }}
-                    type="text"
-                    name="otherLanguages"
-                    autoComplete="otherLanguages"
-                    placeholder="Other Languages"
-                  ></input>
                   {/* Core Classes */}
                   <h1 className="font-bold dark text-3xl p-4 mt-2 text-center">Core Classes Taken</h1>
                   <hr className="mb-10 h-px bg-gray-500 border-0" />
-                  <div className="form-check">
-                    <input 
-                      id="CS1341-checkbox" 
-                      type="checkbox" 
-                      value="CS1341" 
-                      className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                    />
-                    <label htmlFor="CS1341-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">CS 1341</label>
+                  <div className="ml-3">
+                    <div className="form-check">
+                      <input 
+                        id="CS1341-checkbox" 
+                        type="checkbox" 
+                        value="CS1341" 
+                        className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                      />
+                      <label htmlFor="CS1341-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">CS 1341</label>
+                    </div>
+                    <div className="form-check">
+                      <input 
+                        id="CS1342-checkbox" 
+                        type="checkbox" 
+                        value="CS1342" 
+                        className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                      />
+                      <label htmlFor="CS1342-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">CS 1342</label>
+                    </div>
+                    <div className="form-check">
+                      <input 
+                        id="CS2240-checkbox" 
+                        type="checkbox" 
+                        value="CS2240" 
+                        className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                      />
+                      <label htmlFor="CS2240-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">CS 2240</label>
+                    </div>
+                    <div className="form-check">
+                      <input 
+                        id="CS2341-checkbox" 
+                        type="checkbox" 
+                        value="CS2341" 
+                        className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                      />
+                      <label htmlFor="CS2341-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">CS 2341</label>
+                    </div>
+                    <div className="form-check">
+                      <input 
+                        id="CS3330-checkbox" 
+                        type="checkbox" 
+                        value="CS3330" 
+                        className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                      />
+                      <label htmlFor="CS3330-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">CS 3330</label>
+                    </div>
+                    <div className="form-check">
+                      <input 
+                        id="CS3339-checkbox" 
+                        type="checkbox" 
+                        value="CS3339" 
+                        className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                      />
+                      <label htmlFor="CS3339-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">CS 3339</label>
+                    </div>
+                    <div className="form-check">
+                      <input 
+                        id="CS3342-checkbox" 
+                        type="checkbox" 
+                        value="CS3342" 
+                        className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                      />
+                      <label htmlFor="CS3342-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">CS 3342</label>
+                    </div>
+                    <div className="form-check">
+                      <input 
+                        id="CS3345-checkbox" 
+                        type="checkbox" 
+                        value="CS3345" 
+                        className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                      />
+                      <label htmlFor="CS3345-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">CS 3345</label>
+                    </div>
+                    <div className="form-check">
+                      <input 
+                        id="CS3353-checkbox" 
+                        type="checkbox" 
+                        value="CS3353" 
+                        className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                      />
+                      <label htmlFor="CS3353-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">CS 3353</label>
+                    </div>
+                    <div className="form-check">
+                      <input 
+                        id="CS3381-checkbox" 
+                        type="checkbox" 
+                        value="CS3381" 
+                        className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                      />
+                      <label htmlFor="CS3381-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">CS 3381</label>
+                    </div>
+                    <div className="form-check">
+                      <input 
+                        id="CS4344-checkbox" 
+                        type="checkbox" 
+                        value="CS4344" 
+                        className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                      />
+                      <label htmlFor="CS4344-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">CS 4344</label>
+                    </div>
+                    <div className="form-check">
+                      <input 
+                        id="CS4345-checkbox" 
+                        type="checkbox" 
+                        value="CS4345" 
+                        className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                      />
+                      <label htmlFor="CS4345-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">CS 4345</label>
+                    </div>
+                    <div className="form-check">
+                      <input 
+                        id="CS4351-checkbox" 
+                        type="checkbox" 
+                        value="CS4351" 
+                        className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                      />
+                      <label htmlFor="CS4351-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">CS 4351</label>
+                    </div>
+                    <div className="form-check">
+                      <input 
+                        id="CS4352-checkbox" 
+                        type="checkbox" 
+                        value="CS4352" 
+                        className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                      />
+                      <label htmlFor="CS4352-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">CS 4352</label>
+                    </div>
+                    <div className="form-check">
+                      <input 
+                        id="CS4381-checkbox" 
+                        type="checkbox" 
+                        value="CS4381" 
+                        className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                      />
+                      <label htmlFor="CS4381-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">CS 4381</label>
+                    </div>
+                    <div className="form-check">
+                      <input 
+                        id="CS5343-checkbox" 
+                        type="checkbox" 
+                        value="CS5343" 
+                        className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                      />
+                      <label htmlFor="CS5343-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">CS 5343</label>
+                    </div>
                   </div>
-                  <div className="form-check">
-                    <input 
-                      id="CS1342-checkbox" 
-                      type="checkbox" 
-                      value="CS1342" 
-                      className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                    />
-                    <label htmlFor="CS1342-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">CS 1342</label>
+                  <div className="text-center mt-4 mb-5">
+                    <input
+                      id="skillsInputLg"
+                      className="w-full text-black rounded-lg p-2 border-[1px] border-gray-500"
+                      value={currentSkills}
+                      onChange={(e) => setCurrentSkills(e.target.value)}
+                      style={{ backgroundColor: '#FFF' }}
+                      type="skills"
+                      name="skills"
+                      autoComplete="current-skills"
+                      placeholder="Other Skills"
+                    ></input>
                   </div>
-                  <div className="form-check">
-                    <input 
-                      id="CS2240-checkbox" 
-                      type="checkbox" 
-                      value="CS2240" 
-                      className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                    />
-                    <label htmlFor="CS2240-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">CS 2240</label>
-                  </div>
-                  <div className="form-check">
-                    <input 
-                      id="CS2341-checkbox" 
-                      type="checkbox" 
-                      value="CS2341" 
-                      className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                    />
-                    <label htmlFor="CS2341-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">CS 2341</label>
-                  </div>
-                  <div className="form-check">
-                    <input 
-                      id="CS3330-checkbox" 
-                      type="checkbox" 
-                      value="CS3330" 
-                      className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                    />
-                    <label htmlFor="CS3330-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">CS 3330</label>
-                  </div>
-                  <div className="form-check">
-                    <input 
-                      id="CS3339-checkbox" 
-                      type="checkbox" 
-                      value="CS3339" 
-                      className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                    />
-                    <label htmlFor="CS3339-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">CS 3339</label>
-                  </div>
-                  <div className="form-check">
-                    <input 
-                      id="CS3342-checkbox" 
-                      type="checkbox" 
-                      value="CS3342" 
-                      className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                    />
-                    <label htmlFor="CS3342-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">CS 3342</label>
-                  </div>
-                  <div className="form-check">
-                    <input 
-                      id="CS3345-checkbox" 
-                      type="checkbox" 
-                      value="CS3345" 
-                      className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                    />
-                    <label htmlFor="CS3345-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">CS 3345</label>
-                  </div>
-                  <div className="form-check">
-                    <input 
-                      id="CS3353-checkbox" 
-                      type="checkbox" 
-                      value="CS3353" 
-                      className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                    />
-                    <label htmlFor="CS3353-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">CS 3353</label>
-                  </div>
-                  <div className="form-check">
-                    <input 
-                      id="CS3381-checkbox" 
-                      type="checkbox" 
-                      value="CS3381" 
-                      className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                    />
-                    <label htmlFor="CS3381-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">CS 3381</label>
-                  </div>
-                  <div className="form-check">
-                    <input 
-                      id="CS4344-checkbox" 
-                      type="checkbox" 
-                      value="CS4344" 
-                      className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                    />
-                    <label htmlFor="CS4344-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">CS 4344</label>
-                  </div>
-                  <div className="form-check">
-                    <input 
-                      id="CS4345-checkbox" 
-                      type="checkbox" 
-                      value="CS4345" 
-                      className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                    />
-                    <label htmlFor="CS4345-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">CS 4345</label>
-                  </div>
-                  <div className="form-check">
-                    <input 
-                      id="CS4351-checkbox" 
-                      type="checkbox" 
-                      value="CS4351" 
-                      className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                    />
-                    <label htmlFor="CS4351-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">CS 4351</label>
-                  </div>
-                  <div className="form-check">
-                    <input 
-                      id="CS4352-checkbox" 
-                      type="checkbox" 
-                      value="CS4352" 
-                      className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                    />
-                    <label htmlFor="CS4352-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">CS 4352</label>
-                  </div>
-                  <div className="form-check">
-                    <input 
-                      id="CS4381-checkbox" 
-                      type="checkbox" 
-                      value="CS4381" 
-                      className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                    />
-                    <label htmlFor="CS4381-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">CS 4381</label>
-                  </div>
-                  <div className="form-check">
-                    <input 
-                      id="CS5343-checkbox" 
-                      type="checkbox" 
-                      value="CS5343" 
-                      className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                    />
-                    <label htmlFor="CS5343-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">CS 5343</label>
-                  </div>
-                  <input
-                    id="skillsInputLg"
-                    className="w-full text-black rounded-lg p-2 my-2 border-[1px] border-gray-500"
-                    value={currentSkills}
-                    onChange={(e) => setCurrentSkills(e.target.value)}
-                    style={{ backgroundColor: '#FFF' }}
-                    type="skills"
-                    name="skills"
-                    autoComplete="current-skills"
-                    placeholder="Other Skills"
-                  ></input>
                     {/* <div>
                       <input
                         className="mx-1"
