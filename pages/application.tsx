@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import { app, db } from '../firebase-client';
-import { collection, doc, setDoc, getDoc } from 'firebase/firestore';
+import { collection, doc, setDoc, getDoc, addDoc } from 'firebase/firestore';
 import { useState, useEffect } from 'react';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import Link from 'next/link';
@@ -8,43 +8,59 @@ import Link from 'next/link';
 /**
  * A page that allows the user to sign in.
  *
- * Route: /auth
+ * Route: /application
  */
 
 export default function applicationPage() {
   // const { isSignedIn, signInWithGoogle, updateUser } = useAuthContext();
   const [currentName, setCurrentName] = useState('');
   const [currentEmail, setCurrentEmail] = useState('');
-  const [currentPassword, setCurrentPassword] = useState('');
+  const [currentGradeLevel, setCurrentGradeLevel] = useState('');
+  const [knownLanguages, setKnownLanguages] = useState('');
+  const [currentOtherLanguages, setCurrentOtherLanguages] = useState('');
+  const [coreClassesList, setCoreClassesList] = useState('');
+  const [currentSkills, setCurrentSkills] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
-  const [passwordResetDialog, setPasswordResetDialog] = useState(false);
-  const [sendVerification, setSendVerification] = useState(false);
   const dbInstance = collection(db, "users");
+
+  const addApplication = async () => {
+    console.log(currentName);
+    console.log(currentGradeLevel);
+    console.log(currentSkills);
+    await addDoc(collection(db, "application"), {
+      name: currentName, 
+      email: currentEmail, 
+      grade:currentGradeLevel, 
+      currentOtherLanguages, 
+      skills:currentSkills
+      }
+    );
+  }
 
   const router = useRouter();
   const signIn = () => {
     console.log("Sign In Verification!")
 
-    const addUser = async () => {
-      await setDoc(doc(db, "users", currentEmail), {
-        password: currentPassword
-      });
-    }
+    // const addUser = async () => {
+    //   await setDoc(doc(db, "users", currentEmail), {
+    //     password: currentPassword
+    //   });
+    // }
 
-    const getUser = async () => {
-      if (currentEmail == '' || currentPassword == '') {
-        return alert("Please Enter An Email And Password.");
-      } const user = await getDoc(doc(db, "users", currentEmail));
-      if (user.exists()) {
-        console.log(user.data());
-        router.push("/home");
-      } else {
-        console.log("Document does not exist!")
-        return alert("User Does Not Exist! Please Register First.");
-      }
-    }
+    // const getUser = async () => {
+    //   if (currentEmail == '' || currentPassword == '') {
+    //     return alert("Please Enter An Email And Password.");
+    //   } const user = await getDoc(doc(db, "users", currentEmail));
+    //   if (user.exists()) {
+    //     console.log(user.data());
+    //     router.push("/home");
+    //   } else {
+    //     console.log("Document does not exist!")
+    //     return alert("User Does Not Exist! Please Register First.");
+    //   }
+    // }
 
-    getUser();
+    // getUser();
 
     // setSendVerification(false);
     // firebase
@@ -107,20 +123,18 @@ export default function applicationPage() {
   //   router.push('/profile');
   // }
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) { 
-    signIn();
-    event.preventDefault();
+  function handleSubmit() { 
+    addApplication();
   }
 
   return (
     <>
       {/* md-lg screens */}
-      <section className="min-h-screen h-screen md:flex hidden">
+      <section className="min-h-screen h-viewport md:flex hidden">
         {/* TA Application */}
-        <div className="flex flex-col justify-center items-center h-full w-2/3 text-center bg-white p-4">
-          {!passwordResetDialog ? (
+        <div className="flex flex-col justify-center items-center h-full w-2/3 text-left bg-white p-4">
             <div>
-              <h1 className="dark text-3xl p-4">TA Application</h1>
+              <h1 className="dark text-3xl p-4 text-center">TA Application</h1>
               {/* Application input fields */}
               <div className="w-[24rem]">
                 <form onSubmit={handleSubmit}>
@@ -144,16 +158,243 @@ export default function applicationPage() {
                     autoComplete="email"
                     placeholder="Email"
                   ></input>
-                  <input
-                    id="passwordInputLg"
-                    className="w-full text-black rounded-lg p-2 my-2 border-[1px] border-gray-500"
-                    value={currentPassword}
-                    onChange={(e) => setCurrentPassword(e.target.value)}
+                  <select
+                    className="form-select w-full text-black rounded-lg p-2 border-[1px] border-gray-500"
+                    value={currentGradeLevel}
+                    onChange={(e) => setCurrentGradeLevel(e.target.value)}
                     style={{ backgroundColor: '#FFF' }}
-                    type="password"
-                    name="password"
-                    autoComplete="current-password"
-                    placeholder="Password"
+                    name="gradeLevel"
+                    autoComplete="gradeLevel"
+                    placeholder="gradeLevel"
+                  >
+                    <option value="1">First-Year (Undergrad)</option>
+                    <option value="2">Sophomore (Undergrad)</option>
+                    <option value="3">Junior (Undergrad)</option>
+                    <option value="4">Senior (Undergrad)</option>
+                    <option value="5">M.S.</option>
+                    <option value="6">Ph.D.</option>
+                  </select>
+                  <h3 className="dark text-xl p-4 text-center">Known Languages</h3>
+                  <div className="form-check text-left">
+                    <input 
+                      id="Java-checkbox" 
+                      type="checkbox" 
+                      value="Java" 
+                      className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    />
+                    <label htmlFor="Java-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Java</label>
+                  </div>
+                  <div className="form-check">
+                    <input 
+                      id="C++-checkbox" 
+                      type="checkbox" 
+                      value="C++" 
+                      className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    />
+                    <label htmlFor="C++-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">C++</label>
+                  </div>
+                  <div className="form-check">
+                    <input 
+                      id="Python-checkbox" 
+                      type="checkbox" 
+                      value="Python" 
+                      className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    />
+                    <label htmlFor="Python-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Python</label>
+                  </div>
+                  <div className="form-check">
+                    <input 
+                      id="JavaScript-checkbox" 
+                      type="checkbox" 
+                      value="JavaScript" 
+                      className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    />
+                    <label htmlFor="JavaScript-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">JavaScript</label>
+                  </div>
+                  <div className="form-check">
+                    <input 
+                      id="SQL-checkbox" 
+                      type="checkbox" 
+                      value="SQL" 
+                      className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    />
+                    <label htmlFor="SQL-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">SQL</label>
+                  </div>
+                  <div className="form-check">
+                    <input 
+                      id="MATLAB-checkbox" 
+                      type="checkbox" 
+                      value="MATLAB" 
+                      className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    />
+                    <label htmlFor="MATLAB-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">MATLAB</label>
+                  </div>
+                  <input
+                    className="w-50 text-black rounded-lg p-2 border-[1px] border-gray-500"
+                    value={currentOtherLanguages}
+                    onChange={(e) => setCurrentOtherLanguages(e.target.value)}
+                    style={{ backgroundColor: '#FFF' }}
+                    type="text"
+                    name="otherLanguages"
+                    autoComplete="otherLanguages"
+                    placeholder="Other Languages"
+                  ></input>
+                  {/* Core Classes */}
+                  <h3 className="dark text-xl p-4 text-center">Core Classes Taken</h3>
+                  <div className="form-check">
+                    <input 
+                      id="CS1341-checkbox" 
+                      type="checkbox" 
+                      value="CS1341" 
+                      className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    />
+                    <label htmlFor="CS1341-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">CS 1341</label>
+                  </div>
+                  <div className="form-check">
+                    <input 
+                      id="CS1342-checkbox" 
+                      type="checkbox" 
+                      value="CS1342" 
+                      className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    />
+                    <label htmlFor="CS1342-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">CS 1342</label>
+                  </div>
+                  <div className="form-check">
+                    <input 
+                      id="CS2240-checkbox" 
+                      type="checkbox" 
+                      value="CS2240" 
+                      className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    />
+                    <label htmlFor="CS2240-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">CS 2240</label>
+                  </div>
+                  <div className="form-check">
+                    <input 
+                      id="CS2341-checkbox" 
+                      type="checkbox" 
+                      value="CS2341" 
+                      className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    />
+                    <label htmlFor="CS2341-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">CS 2341</label>
+                  </div>
+                  <div className="form-check">
+                    <input 
+                      id="CS3330-checkbox" 
+                      type="checkbox" 
+                      value="CS3330" 
+                      className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    />
+                    <label htmlFor="CS3330-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">CS 3330</label>
+                  </div>
+                  <div className="form-check">
+                    <input 
+                      id="CS3339-checkbox" 
+                      type="checkbox" 
+                      value="CS3339" 
+                      className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    />
+                    <label htmlFor="CS3339-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">CS 3339</label>
+                  </div>
+                  <div className="form-check">
+                    <input 
+                      id="CS3342-checkbox" 
+                      type="checkbox" 
+                      value="CS3342" 
+                      className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    />
+                    <label htmlFor="CS3342-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">CS 3342</label>
+                  </div>
+                  <div className="form-check">
+                    <input 
+                      id="CS3345-checkbox" 
+                      type="checkbox" 
+                      value="CS3345" 
+                      className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    />
+                    <label htmlFor="CS3345-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">CS 3345</label>
+                  </div>
+                  <div className="form-check">
+                    <input 
+                      id="CS3353-checkbox" 
+                      type="checkbox" 
+                      value="CS3353" 
+                      className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    />
+                    <label htmlFor="CS3353-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">CS 3353</label>
+                  </div>
+                  <div className="form-check">
+                    <input 
+                      id="CS3381-checkbox" 
+                      type="checkbox" 
+                      value="CS3381" 
+                      className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    />
+                    <label htmlFor="CS3381-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">CS 3381</label>
+                  </div>
+                  <div className="form-check">
+                    <input 
+                      id="CS4344-checkbox" 
+                      type="checkbox" 
+                      value="CS4344" 
+                      className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    />
+                    <label htmlFor="CS4344-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">CS 4344</label>
+                  </div>
+                  <div className="form-check">
+                    <input 
+                      id="CS4345-checkbox" 
+                      type="checkbox" 
+                      value="CS4345" 
+                      className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    />
+                    <label htmlFor="CS4345-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">CS 4345</label>
+                  </div>
+                  <div className="form-check">
+                    <input 
+                      id="CS4351-checkbox" 
+                      type="checkbox" 
+                      value="CS4351" 
+                      className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    />
+                    <label htmlFor="CS4351-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">CS 4351</label>
+                  </div>
+                  <div className="form-check">
+                    <input 
+                      id="CS4352-checkbox" 
+                      type="checkbox" 
+                      value="CS4352" 
+                      className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    />
+                    <label htmlFor="CS4352-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">CS 4352</label>
+                  </div>
+                  <div className="form-check">
+                    <input 
+                      id="CS4381-checkbox" 
+                      type="checkbox" 
+                      value="CS4381" 
+                      className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    />
+                    <label htmlFor="CS4381-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">CS 4381</label>
+                  </div>
+                  <div className="form-check">
+                    <input 
+                      id="CS5343-checkbox" 
+                      type="checkbox" 
+                      value="CS5343" 
+                      className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    />
+                    <label htmlFor="CS5343-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">CS 5343</label>
+                  </div>
+                  <input
+                    id="skillsInputLg"
+                    className="w-full text-black rounded-lg p-2 my-2 border-[1px] border-gray-500"
+                    value={currentSkills}
+                    onChange={(e) => setCurrentSkills(e.target.value)}
+                    style={{ backgroundColor: '#FFF' }}
+                    type="skills"
+                    name="skills"
+                    autoComplete="current-skills"
+                    placeholder="Other Skills"
                   ></input>
                     {/* <div>
                       <input
@@ -167,24 +408,10 @@ export default function applicationPage() {
                   <button
                     type="button"
                     className="px-4 py-2 w-[24rem] rounded-md shadow-md bg-black hover:shadow-lg hover:bg-gray-300"
-                    onClick={() => {
-                      signIn();
-                    }}
+                    onClick={handleSubmit}
                   >
-                    Sign in
+                    Submit
                   </button>
-                  <div className="flex justify-between">
-                    <div
-                      className="dark hover:underline cursor-pointer text-left"
-                      onClick={() => {
-                        setPasswordResetDialog(true);
-                        setErrorMsg('');
-                        setSendVerification(false);
-                      }}
-                    >
-                      Forgot password?
-                    </div>
-                  </div>
                 </form>
               </div>
               {/* Error and verification messages */}
@@ -197,40 +424,6 @@ export default function applicationPage() {
                 </button>
               )} */}
             </div>
-          ) : (
-            // Password reset section
-            <div>
-              <div className="w-[24rem] text-left">
-                <ArrowBackIcon
-                  className="cursor-pointer"
-                  onClick={() => {
-                    setPasswordResetDialog(false);
-                    setErrorMsg('');
-                  }}
-                />
-              </div>
-              <h1 className="dark text-3xl">Reset Password</h1>
-              <div className="w-[24rem]">
-                <input
-                  className="w-full rounded-lg p-2 border-[1px] border-gray-500 mt-8 mb-4"
-                  value={currentEmail}
-                  onChange={(e) => setCurrentEmail(e.target.value)}
-                  style={{ backgroundColor: '#FFF' }}
-                  placeholder="Email"
-                ></input>
-                {/* <button
-                  className="w-[24rem] px-4 py-2 rounded-md shadow-md bg-green-200 hover:shadow-lg hover:bg-green-300"
-                  onClick={() => {
-                    sendResetEmail();
-                    setErrorMsg('');
-                  }}
-                >
-                  Send Reset Email
-                </button> */}
-                <div className="text-left">{errorMsg}</div>
-              </div>
-            </div>
-          )}
         </div>
         {/* Create new account sidebar*/}
         <div className="flex flex-col justify-center items-center h-full w-1/3 bg-black-200 text-center p-4">
@@ -249,7 +442,6 @@ export default function applicationPage() {
       {/* Small Screen */}
       <section className="flex md:hidden min-h-screen h-screen justify-center bg-black-200">
         <div className="flex flex-col items-center justify-center w-5/6 h-4/5 bg-black-200 my-8 p-6">
-          {!passwordResetDialog ? (
             <>
               {/* Main Login Screen */}
               <h1 className="text-3xl text-white font-black text-center">TA Management System</h1> {/* !change */}
@@ -279,8 +471,8 @@ export default function applicationPage() {
                   <input
                     id="passwordInputSm"
                     className="passwordInput w-full rounded-lg p-2 my-2 border-[1px] border-gray-500 text-black"
-                    value={currentPassword}
-                    onChange={(e) => setCurrentPassword(e.target.value)}
+                    value={currentSkills}
+                    onChange={(e) => setCurrentSkills(e.target.value)}
                     style={{ backgroundColor: '#FFF' }}
                     type="password"
                     name="password"
@@ -306,23 +498,6 @@ export default function applicationPage() {
               </button>
               {/* Error and verification messages */}
               <div className="text-sm text-white">{errorMsg}</div>
-              {/* {sendVerification && (
-                <button className="underline text-sm" onClick={() => sendVerificationEmail()}>
-                  Resend verification
-                </button>
-              )} */}
-              {/* Account options */}
-              <div className="text-sm w-5/6 my-4">
-                <div
-                  className="cursor-pointer hover:underline text-white"
-                  onClick={() => {
-                    setPasswordResetDialog(true);
-                    setErrorMsg('');
-                    setSendVerification(false);
-                  }}
-                >
-                  Forgot Password?
-                </div>
                 {/* Create new account bottom*/}
                 <div className="flex flex-col justify-center items-center bg-black-200 text-center p-4">
                   <h1 className="text-3xl font-black text-white">Don&#39;t have an account?</h1>
@@ -335,42 +510,7 @@ export default function applicationPage() {
                     </a>
                   </Link>
                 </div>
-              </div>
             </>
-          ) : (
-            //Password reset section
-            <div>
-              <div className="w-full text-left my-4 text-white">
-                <ArrowBackIcon
-                  className="cursor-pointer"
-                  onClick={() => {
-                    setPasswordResetDialog(false);
-                    setErrorMsg('');
-                  }}
-                />
-              </div>
-              <h1 className="text-3xl text-white">Reset Password</h1>
-              <div className="w-full">
-                <input
-                  className="w-full rounded-lg p-2 border-[1px] border-gray-500 my-4 text-black"
-                  value={currentEmail}
-                  onChange={(e) => setCurrentEmail(e.target.value)}
-                  style={{ backgroundColor: '#FFF' }}
-                  placeholder="Email"
-                ></input>
-                {/* <button
-                  className="px-4 py-2 rounded-md shadow-md bg-white hover:shadow-lg hover:bg-gray-100"
-                  onClick={() => {
-                    sendResetEmail();
-                    setErrorMsg('');
-                  }}
-                >
-                  Send Reset Email
-                </button> */}
-                <div className="text-left text-white">{errorMsg}</div>
-              </div>
-            </div>
-          )}
         </div>
       </section>
     </>
