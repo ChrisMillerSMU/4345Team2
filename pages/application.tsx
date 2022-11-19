@@ -16,12 +16,12 @@ export default function applicationPage() {
   const [currentName, setCurrentName] = useState('');
   const [currentEmail, setCurrentEmail] = useState('');
   const [currentGradeLevel, setCurrentGradeLevel] = useState('');
-  const [knownLanguages, setKnownLanguages] = useState([]);
+  const [languages, setLanguages] = useState({ 'Java': false, 'C++': false, 'Python': false, 'Javascript': false, 'SQL': false, 'MATLAB': false });
   const [currentOtherLanguages, setCurrentOtherLanguages] = useState('');
-  const [coreClassesList, setCoreClassesList] = useState([]);
+  const [classes, setClasses] = useState({ 'CS1341': false, 'CS1342': false, 'CS2240': false, 'CS2341': false, 'CS3330': false, 'CS3339': false, 'CS3342': false, 'CS3345': false, 'CS3353': false, 'CS3381': false, 'CS4344': false, 'CS4345': false,'CS4351': false, 'CS4352': false, 'CS4381': false, 'CS5343': false });
   const [currentSkills, setCurrentSkills] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
-  const dbInstance = collection(db, "users");
+  const dbInstance = collection(db, "application");
 
   const addApplication = async () => {
     console.log(currentName);
@@ -30,11 +30,14 @@ export default function applicationPage() {
     await addDoc(collection(db, "application"), {
       name: currentName, 
       email: currentEmail, 
-      grade:currentGradeLevel, 
-      currentOtherLanguages, 
-      skills:currentSkills
+      grade: currentGradeLevel, 
+      languages: languages,
+      other: currentOtherLanguages,
+      classes: classes,
+      skills: currentSkills
       }
     );
+    router.push("/");
   }
 
   const router = useRouter();
@@ -124,88 +127,7 @@ export default function applicationPage() {
   // }
 
   function handleSubmit() { 
-    // name done, email done, gradelevel done
-    // add known languages from checkboxes and textbox
-    getKnownLanguages();
-    // add core classes taken from checkboxes
-    getCoreClasses();
-    // other skills done
     addApplication();
-  }
-
-  function getKnownLanguages() {
-    if (document.querySelector('#Java-checkbox').checked) {
-      knownLanguages.push(document.querySelector('#Java-checkbox').value);
-    }
-    if (document.querySelector('#C-checkbox').checked){
-      knownLanguages.push(document.querySelector('#C-checkbox').value);
-    } 
-    if (document.querySelector('#Python-checkbox').checked){
-      knownLanguages.push(document.querySelector('#Python-checkbox').value);
-    } 
-    if (document.querySelector('#JavaScript-checkbox').checked){
-      knownLanguages.push(document.querySelector('#JavaScript-checkbox').value);
-    } 
-    if (document.querySelector('#SQL-checkbox').checked){
-      knownLanguages.push(document.querySelector('#SQL-checkbox').value);
-    } 
-    if (document.querySelector('#MATLAB-checkbox').checked){
-      knownLanguages.push(document.querySelector('#MATLAB-checkbox').value);
-    } 
-    if (currentOtherLanguages != '') {knownLanguages.push(currentOtherLanguages);}
-    console.log(knownLanguages);
-  }
-
-  function getCoreClasses() {
-    if (document.querySelector('#CS1341-checkbox').checked) {
-      coreClassesList.push(document.querySelector('#CS1341-checkbox').value);
-    } 
-    if (document.querySelector('#CS1342-checkbox').checked){
-      coreClassesList.push(document.querySelector('#CS1342-checkbox').value);
-    } 
-    if (document.querySelector('#CS2240-checkbox').checked){
-      coreClassesList.push(document.querySelector('#CS2240-checkbox').value);
-    } 
-    if (document.querySelector('#CS2341-checkbox').checked){
-      coreClassesList.push(document.querySelector('#CS2341-checkbox').value);
-    } 
-    if (document.querySelector('#CS3330-checkbox').checked){
-      coreClassesList.push(document.querySelector('#CS3330-checkbox').value);
-    } 
-    if (document.querySelector('#CS3339-checkbox').checked){
-      coreClassesList.push(document.querySelector('#CS3339-checkbox').value);
-    }
-    if (document.querySelector('#CS3342-checkbox').checked){
-      coreClassesList.push(document.querySelector('#CS3342-checkbox').value);
-    }
-    if (document.querySelector('#CS3345-checkbox').checked){
-      coreClassesList.push(document.querySelector('#CS3345-checkbox').value);
-    }
-    if (document.querySelector('#CS3353-checkbox').checked){
-      coreClassesList.push(document.querySelector('#CS3353-checkbox').value);
-    }
-    if (document.querySelector('#CS3381-checkbox').checked){
-      coreClassesList.push(document.querySelector('#CS3381-checkbox').value);
-    }
-    if (document.querySelector('#CS4344-checkbox').checked){
-      coreClassesList.push(document.querySelector('#CS4344-checkbox').value);
-    }
-    if (document.querySelector('#CS4345-checkbox').checked){
-      coreClassesList.push(document.querySelector('#CS4345-checkbox').value);
-    }
-    if (document.querySelector('#CS4351-checkbox').checked){
-      coreClassesList.push(document.querySelector('#CS4351-checkbox').value);
-    }
-    if (document.querySelector('#CS4352-checkbox').checked){
-      coreClassesList.push(document.querySelector('#CS4352-checkbox').value);
-    }
-    if (document.querySelector('#CS4381-checkbox').checked){
-      coreClassesList.push(document.querySelector('#CS4381-checkbox').value);
-    }
-    if (document.querySelector('#CS5343-checkbox').checked){
-      coreClassesList.push(document.querySelector('#CS5343-checkbox').value);
-    }
-    console.log(coreClassesList);
   }
 
   return (
@@ -262,6 +184,7 @@ export default function applicationPage() {
                   <div className="ml-3">
                     <div className="form-check text-left">
                       <input 
+                        onChange={(x) => languages['Java'] = x.target.checked}
                         id="Java-checkbox" 
                         type="checkbox" 
                         value="Java" 
@@ -271,6 +194,7 @@ export default function applicationPage() {
                     </div>
                     <div className="form-check">
                       <input 
+                        onChange={(x) => languages['C++'] = x.target.checked}
                         id="C++-checkbox" 
                         type="checkbox" 
                         value="C++" 
@@ -280,6 +204,7 @@ export default function applicationPage() {
                     </div>
                     <div className="form-check">
                       <input 
+                        onChange={(x) => languages['Python'] = x.target.checked}
                         id="Python-checkbox" 
                         type="checkbox" 
                         value="Python" 
@@ -289,6 +214,7 @@ export default function applicationPage() {
                     </div>
                     <div className="form-check">
                       <input 
+                        onChange={(x) => languages['Javascript'] = x.target.checked}
                         id="JavaScript-checkbox" 
                         type="checkbox" 
                         value="JavaScript" 
@@ -298,6 +224,7 @@ export default function applicationPage() {
                     </div>
                     <div className="form-check">
                       <input 
+                        onChange={(x) => languages['SQL'] = x.target.checked}
                         id="SQL-checkbox" 
                         type="checkbox" 
                         value="SQL" 
@@ -307,6 +234,7 @@ export default function applicationPage() {
                     </div>
                     <div className="form-check">
                       <input 
+                        onChange={(x) => languages['MATLAB'] = x.target.checked}
                         id="MATLAB-checkbox" 
                         type="checkbox" 
                         value="MATLAB" 
@@ -333,6 +261,7 @@ export default function applicationPage() {
                   <div className="ml-3">
                     <div className="form-check">
                       <input 
+                        onChange={(x) => classes['CS1341'] = x.target.checked}
                         id="CS1341-checkbox" 
                         type="checkbox" 
                         value="CS1341" 
@@ -342,6 +271,7 @@ export default function applicationPage() {
                     </div>
                     <div className="form-check">
                       <input 
+                        onChange={(x) => classes['CS1342'] = x.target.checked}
                         id="CS1342-checkbox" 
                         type="checkbox" 
                         value="CS1342" 
@@ -351,6 +281,7 @@ export default function applicationPage() {
                     </div>
                     <div className="form-check">
                       <input 
+                        onChange={(x) => classes['CS2240'] = x.target.checked}
                         id="CS2240-checkbox" 
                         type="checkbox" 
                         value="CS2240" 
@@ -360,6 +291,7 @@ export default function applicationPage() {
                     </div>
                     <div className="form-check">
                       <input 
+                        onChange={(x) => classes['CS2341'] = x.target.checked}
                         id="CS2341-checkbox" 
                         type="checkbox" 
                         value="CS2341" 
@@ -369,6 +301,7 @@ export default function applicationPage() {
                     </div>
                     <div className="form-check">
                       <input 
+                        onChange={(x) => classes['CS3330'] = x.target.checked}
                         id="CS3330-checkbox" 
                         type="checkbox" 
                         value="CS3330" 
@@ -378,6 +311,7 @@ export default function applicationPage() {
                     </div>
                     <div className="form-check">
                       <input 
+                        onChange={(x) => classes['CS3339'] = x.target.checked}
                         id="CS3339-checkbox" 
                         type="checkbox" 
                         value="CS3339" 
@@ -387,6 +321,7 @@ export default function applicationPage() {
                     </div>
                     <div className="form-check">
                       <input 
+                        onChange={(x) => classes['CS3342'] = x.target.checked}
                         id="CS3342-checkbox" 
                         type="checkbox" 
                         value="CS3342" 
@@ -396,6 +331,7 @@ export default function applicationPage() {
                     </div>
                     <div className="form-check">
                       <input 
+                        onChange={(x) => classes['CS3345'] = x.target.checked}
                         id="CS3345-checkbox" 
                         type="checkbox" 
                         value="CS3345" 
@@ -405,6 +341,7 @@ export default function applicationPage() {
                     </div>
                     <div className="form-check">
                       <input 
+                        onChange={(x) => classes['CS3353'] = x.target.checked}
                         id="CS3353-checkbox" 
                         type="checkbox" 
                         value="CS3353" 
@@ -414,6 +351,7 @@ export default function applicationPage() {
                     </div>
                     <div className="form-check">
                       <input 
+                        onChange={(x) => classes['CS3381'] = x.target.checked}
                         id="CS3381-checkbox" 
                         type="checkbox" 
                         value="CS3381" 
@@ -423,6 +361,7 @@ export default function applicationPage() {
                     </div>
                     <div className="form-check">
                       <input 
+                        onChange={(x) => classes['CS4344'] = x.target.checked}
                         id="CS4344-checkbox" 
                         type="checkbox" 
                         value="CS4344" 
@@ -432,6 +371,7 @@ export default function applicationPage() {
                     </div>
                     <div className="form-check">
                       <input 
+                        onChange={(x) => classes['CS4345'] = x.target.checked}
                         id="CS4345-checkbox" 
                         type="checkbox" 
                         value="CS4345" 
@@ -441,6 +381,7 @@ export default function applicationPage() {
                     </div>
                     <div className="form-check">
                       <input 
+                        onChange={(x) => classes['CS4351'] = x.target.checked}
                         id="CS4351-checkbox" 
                         type="checkbox" 
                         value="CS4351" 
@@ -450,6 +391,7 @@ export default function applicationPage() {
                     </div>
                     <div className="form-check">
                       <input 
+                        onChange={(x) => classes['CS4352'] = x.target.checked}
                         id="CS4352-checkbox" 
                         type="checkbox" 
                         value="CS4352" 
@@ -459,6 +401,7 @@ export default function applicationPage() {
                     </div>
                     <div className="form-check">
                       <input 
+                        onChange={(x) => classes['CS4381'] = x.target.checked}
                         id="CS4381-checkbox" 
                         type="checkbox" 
                         value="CS4381" 
@@ -468,6 +411,7 @@ export default function applicationPage() {
                     </div>
                     <div className="form-check">
                       <input 
+                        onChange={(x) => classes['CS5343'] = x.target.checked}
                         id="CS5343-checkbox" 
                         type="checkbox" 
                         value="CS5343" 

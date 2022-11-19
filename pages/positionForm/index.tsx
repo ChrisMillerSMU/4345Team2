@@ -115,6 +115,7 @@ export default function PositionForm() {
                   </div>
                   <div className="form-check">
                     <input 
+                      onChange={(x) => languages['SQL'] = x.target.checked}
                       id="SQL-checkbox" 
                       type="checkbox" 
                       value="SQL" 
@@ -124,6 +125,7 @@ export default function PositionForm() {
                   </div>
                   <div className="form-check">
                     <input 
+                      onChange={(x) => languages['MATLAB'] = x.target.checked}
                       id="MATLAB-checkbox" 
                       type="checkbox" 
                       value="MATLAB" 
