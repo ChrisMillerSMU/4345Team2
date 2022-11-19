@@ -106,7 +106,7 @@ export default function AuthPage() {
   //   router.push('/profile');
   // }
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) { 
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     signIn();
     event.preventDefault();
   }
@@ -150,7 +150,7 @@ export default function AuthPage() {
                     autoComplete="current-password"
                     placeholder="Password"
                   ></input>
-                    {/* <div>
+                  {/* <div>
                       <input
                         className="mx-1"
                         type="checkbox"
@@ -233,7 +233,7 @@ export default function AuthPage() {
           <p className="my-6">
             You can register here!
           </p>
-          <Link href="/auth/signup">
+          <Link href="/register">
             <a className="px-4 py-2 rounded-xl shadow-md bg-white text-black hover:shadow-lg hover:bg-blue-300">
               Register
             </a>
@@ -297,7 +297,7 @@ export default function AuthPage() {
                 className="px-4 py-2 rounded-md text-black text-lg shadow-md bg-white w-5/6 hover:shadow-lg hover:bg-blue-300"
                 onClick={() => signIn()}
               >
-              Sign in
+                Sign in
               </button>
               {/* Error and verification messages */}
               <div className="text-sm text-white">{errorMsg}</div>
@@ -324,7 +324,7 @@ export default function AuthPage() {
                   <p className="my-6 text-xl">
                     You can register here!
                   </p>
-                  <Link href="/auth/signup">
+                  <Link href="/register">
                     <a className="px-4 py-2 rounded-xl shadow-md bg-white text-lg text-black hover:shadow-lg hover:bg-blue-300">
                       Register
                     </a>
