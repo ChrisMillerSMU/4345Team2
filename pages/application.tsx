@@ -130,16 +130,17 @@ export default function applicationPage() {
   return (
     <>
       {/* md-lg screens */}
-      <section className="min-h-screen h-viewport md:flex hidden">
+      <section className="min-h-screen h-viewport md:flex hidden bg-gradient-to-br from-red-400 via-red-400 to-blue-400">
         {/* TA Application */}
         <div className="flex flex-col justify-center items-center h-full w-2/3 text-left bg-white p-4">
-            <div>
-              <h1 className="dark text-3xl p-4 text-center">TA Application</h1>
+            <div className="mt-32">
+              <h1 className="font-bold dark text-3xl p-4 text-center">TA Application</h1>
+              <hr className="mb-10 h-px bg-gray-500 border-0" />
               {/* Application input fields */}
               <div className="w-[24rem]">
                 <form onSubmit={handleSubmit}>
                   <input
-                    className="w-full text-black rounded-lg p-2 border-[1px] border-gray-500"
+                    className="w-full text-black rounded-lg p-2 pl-[14px] border-[1px] border-gray-500 mb-4"
                     value={currentName}
                     onChange={(e) => setCurrentName(e.target.value)}
                     style={{ backgroundColor: '#FFF' }}
@@ -149,7 +150,7 @@ export default function applicationPage() {
                     placeholder="Name">
                   </input>
                   <input
-                    className="w-full text-black rounded-lg p-2 border-[1px] border-gray-500"
+                    className="w-full text-black rounded-lg p-2 pl-[14px] border-[1px] border-gray-500 mb-4"
                     value={currentEmail}
                     onChange={(e) => setCurrentEmail(e.target.value)}
                     style={{ backgroundColor: '#FFF' }}
@@ -159,7 +160,7 @@ export default function applicationPage() {
                     placeholder="Email"
                   ></input>
                   <select
-                    className="form-select w-full text-black rounded-lg p-2 border-[1px] border-gray-500"
+                    className="form-select w-full text-black rounded-lg p-[10px] border-[1px] mb-4 border-gray-500"
                     value={currentGradeLevel}
                     onChange={(e) => setCurrentGradeLevel(e.target.value)}
                     style={{ backgroundColor: '#FFF' }}
@@ -167,6 +168,7 @@ export default function applicationPage() {
                     autoComplete="gradeLevel"
                     placeholder="gradeLevel"
                   >
+                    <option value="" disabled selected hidden>Choose Gradelevel</option>
                     <option value="1">First-Year (Undergrad)</option>
                     <option value="2">Sophomore (Undergrad)</option>
                     <option value="3">Junior (Undergrad)</option>
@@ -174,7 +176,8 @@ export default function applicationPage() {
                     <option value="5">M.S.</option>
                     <option value="6">Ph.D.</option>
                   </select>
-                  <h3 className="dark text-xl p-4 text-center">Known Languages</h3>
+                  <h1 className="font-bold dark text-3xl p-4 mt-2 text-center">Known Languages</h1>
+                  <hr className="mb-10 h-px bg-gray-500 border-0" />
                   <div className="form-check text-left">
                     <input 
                       id="Java-checkbox" 
@@ -240,7 +243,8 @@ export default function applicationPage() {
                     placeholder="Other Languages"
                   ></input>
                   {/* Core Classes */}
-                  <h3 className="dark text-xl p-4 text-center">Core Classes Taken</h3>
+                  <h1 className="font-bold dark text-3xl p-4 mt-2 text-center">Core Classes Taken</h1>
+                  <hr className="mb-10 h-px bg-gray-500 border-0" />
                   <div className="form-check">
                     <input 
                       id="CS1341-checkbox" 

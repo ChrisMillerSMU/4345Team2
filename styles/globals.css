@@ -12,6 +12,10 @@
   font-family: 'Inter', sans-serif;
 }
 
+:invalid {
+  color: rgba(156, 163, 175, 1);
+}
+
 html,
 body {
   padding: 0;
