@@ -249,7 +249,7 @@ export default function applicationPage() {
                     autoComplete="gradeLevel"
                     placeholder="gradeLevel"
                   >
-                    <option value="filler" disabled selected hidden>Choose Education Level</option>
+                    <option value="" disabled selected hidden>Choose Education Level</option>
                     <option value="First-Year">First-Year (Undergrad)</option>
                     <option value="Sophomore">Sophomore (Undergrad)</option>
                     <option value="Junior">Junior (Undergrad)</option>
@@ -509,26 +509,14 @@ export default function applicationPage() {
               </div>
               {/* Error and verification messages */}
               <div className="mt-4 w-[24rem]">{errorMsg}</div>
-              {/* !change if needed */}
-              {/* Uncomment to allow resend verification email option (users could spam) */}
-              {/* {sendVerification && (
-                <button className="underline" onClick={() => sendVerificationEmail()}>
-                  Resend verification
-                </button>
-              )} */}
             </div>
         </div>
         {/* Create new account sidebar*/}
         <div className="flex flex-col justify-center items-center h-full w-1/3 bg-black-200 text-center p-4">
-          <h1 className="text-3xl font-black">Don&#39;t have an account?</h1>
-          <p className="my-6">
-            You can register here!
-          </p>
-          <Link href="/auth/signup">
-            <a className="px-4 py-2 rounded-xl shadow-md bg-white text-black hover:shadow-lg hover:bg-blue-300">
-              Register
-            </a>
-          </Link>
+          <img className='p-4' src='https://media.glassdoor.com/l/a0/51/35/f3/main-campus.jpg'></img>
+          <img className='p-4' src='https://storage.googleapis.com/collegetuitioncompare/images/webp/colleges/228246-southern-methodist-university.webp'></img>
+          <img className='p-4' src='https://media.bizj.us/view/img/2233301/smu-bobby-b-lyle-school-of-engineering*1024xx900-506-0-118.jpg'></img>
+          <img className='p-4' src='https://www.smu.edu/-/media/Site/Home/Summer21/intro-campus.jpg'></img>
         </div>
       </section>
 
